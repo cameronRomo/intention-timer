@@ -30,11 +30,13 @@ html {
   display: flex;
   height: 100%;
   width: 100%;
+  justify-content: space-between;
 }
 
 .activities__new-activity {
   background-color: #2B2733;
   min-width: 800px;
+  width: 66%;
 }
 
 .activities__new-activity__h2 {
@@ -95,10 +97,30 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   /* padding: 5px;
   max-width: 220px;
   margin: auto; */
+}
+
+.activities__input-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.activities__input-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.activities__text-field {
+  background-color: transparent;
+  outline: none;
+  outline-style: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: solid #CBC9CF 2px;
+  padding: 3px 10px;
 }
 
 .activities__activity-button {
