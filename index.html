@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- <meta charset="UTF-8">  re local storage-->
+  <link rel="stylesheet" href="./styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+  <title>Document</title>
+</head>
+<body class="body">
+  <div class="header">
+    <h1 class="header__h1">INTENTION TIMER</h1>
+  </div>
+
+  <div class="main-section">
+    <h2 class="main-section__h2">New Activity</h2>
+    <div class="new-activity-box">
+      <form>
+        <p>Select a category:</p>
+        <input type="image" src="./assets/study.svg" name="category" value="study"/>
+        <input type="image" src="./assets/meditate.svg" name="category" value="study"/>
+        <input type="image" src="./assets/exercise.svg" name="category" value="study"/>
+        <label for="goal">What would you like to accomplish during this time?</label>
+        <input type="text" name="goal" placeholder="goal placeholder">
+        <label for="minutes">Minutes</label>
+        <input type="text" name="minutes" placeholder="minutes placeholder">
+        <label for="seconds">Seconds</label>
+        <input type="text" name="seconds" placeholder="seconds placeholder">
+        <button type="button">START ACTIVITY</button>
+    </div>
+    <div>
+      <h2 class="past-activity-box__h2">Past Activities</h2>
+      <p>You haven't logged anny activities yet.<br>
+        Complete the form to the left to get started!</p>
+    </div>
+  </div>
+</body>
+</html>
