@@ -12,7 +12,7 @@ html {
   /* width: 100%; */
 }
 
-.header {
+.body__header {
   color: #FFF;
   display: block;
   /* background-color: #45424D; */
@@ -21,18 +21,22 @@ html {
   padding: 13px;
 }
 
-.header__a {
+.body__header__title {
   width: 100%;
 }
 
-.main-section {
+.activities {
   color: #CBC9CF;
   display: flex;
   height: 100%;
   width: 100%;
 }
 
-.new-activity-box__h2 {
+.activities__new-activity {
+  background-color: #2B2733;
+}
+
+.activities__new-activity__h2 {
   /* display: flex; */
   /* new addition */
   position: relative;
@@ -41,14 +45,14 @@ html {
 
 }
 
-.new-activity-box {
+.activities__new-activity {
   background-color: #2B2733;
 /* new additions */
   display: flex;
   flex-direction: column;
 }
 
-.new-activity-box__select-category {
+.activities__select-category {
   background-color: #45424D;
   width: 90%;
   height: 100%;
@@ -59,33 +63,37 @@ html {
   color: #FFF;
 }
 
-.main-section__past-activity{
+.activities__form {
+
+}
+
+.activities__p {
+
+}
+
+.activities__activity-button {
+  height: 20px;
+  width: 20px;
+}
+
+.activities__start-button {
+
+}
+
+.activities__past-activity {
   width: 34%;
   margin-left: 5px;
   background-color: #2B2733;
 }
 
-.select-category__p {
-
-}
-
-.past-activity-box__h2 {
+.activities__past-activity__h2 {
   margin-left: 35px;
 }
 
-.past-activity-box__p {
+.activities__past-activity__p {
   text-align: center;
 }
 
-.cards {
+.activities__cards {
   color: #FFF;
-}
-
-.new-activity-box {
-  background-color: #2B2733;
-}
-
-.select-category__activity-button {
-  height: 20px;
-  width: 20px;
 }
