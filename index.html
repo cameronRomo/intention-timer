@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <!-- <meta charset="UTF-8">  re local storage-->
+  <meta charset="UTF-8">
+  <!-- re local storage -->
   <link rel="stylesheet" href="./styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
   <title>Document</title>
 </head>
+
 <body class="body">
   <div class="body__header">
     <a class="body__header__title">INTENTION TIMER</a>
@@ -16,9 +19,25 @@
       <div class="activities__select-category">
         <form class="activities__form">
           <p class="activities__p">Select a category:</p>
-          <input class="activities__activity-button" type="image" src="./assets/study.svg" name="category" value="study"/>
-          <input class="activities__activity-button" type="image" src="./assets/meditate.svg" name="category" value="study"/>
-          <input class="activities__activity-button" type="image" src="./assets/exercise.svg" name="category" value="study"/>
+          <div class="activities__icons">
+            <figure class="activities__figure">
+              <img src="./assets/study.svg" alt="study icon" class="activities__activity-button" name="category" value="study">
+              <figcaption>Study</figcaption>
+            </figure>
+            <figure class="activities__figure">
+              <img src="./assets/meditate.svg" alt="meditate icon" class="activities__activity-button" name="category" value="meditate">
+              <figcaption>Meditate</figcaption>
+            </figure>
+            <figure class="activities__figure">
+              <img src="./assets/exercise.svg" alt="exercise icon" class="activities__activity-button" name="category" value="exercise">
+              <figcaption>Exercise</figcaption>
+            </figure>
+          </div>
+
+
+
+          <!-- <input class="activities__activity-button" type="image" src="./assets/meditate.svg" name="category" value="study" />
+          <input class="activities__activity-button" type="image" src="./assets/exercise.svg" name="category" value="study" /> -->
           <label for="goal">What would you like to accomplish during this time?</label>
           <input type="text" name="goal" placeholder="goal placeholder">
           <label for="minutes">Minutes</label>
@@ -36,4 +55,5 @@
     </div>
   </div>
 </body>
+
 </html>

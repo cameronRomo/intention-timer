@@ -34,6 +34,7 @@ html {
 
 .activities__new-activity {
   background-color: #2B2733;
+  min-width: 800px;
 }
 
 .activities__new-activity__h2 {
@@ -42,7 +43,6 @@ html {
   position: relative;
   /* align-self: flex-start; */
   left: 5%;
-
 }
 
 .activities__new-activity {
@@ -61,14 +61,44 @@ html {
   align-self: center;
   border-radius: 5px;
   color: #FFF;
+  box-shadow: 8px 8px 5px 5px #26222D;
+  max-height: 84%;
+  min-height: 60%;
 }
 
 .activities__form {
-
+  padding: 30px;
+  min-width: 350px;
 }
 
 .activities__p {
+  text-align: left;
+  position: relative;
+  padding: 0 38px;
+}
 
+.activities__icons {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 42px;
+}
+
+.activities__figure {
+  border: thin #FFF solid;
+  justify-content: space-between;
+  padding: 7px 48px;
+  height: 43px;
+  width: 40px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* padding: 5px;
+  max-width: 220px;
+  margin: auto; */
 }
 
 .activities__activity-button {
@@ -84,6 +114,7 @@ html {
   width: 34%;
   margin-left: 5px;
   background-color: #2B2733;
+  min-width: 300px;
 }
 
 .activities__past-activity__h2 {
@@ -92,6 +123,10 @@ html {
 
 .activities__past-activity__p {
   text-align: center;
+  margin-left: 35px;
+  margin-right: 35px;
+  padding-top: 30px;
+  line-height: 2;
 }
 
 .activities__cards {
