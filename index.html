@@ -34,20 +34,23 @@
             </figure>
           </div>
           <div class="activities__input-section">
-            <div class="activities__input-field">
-              <label for="goal">What would you like to accomplish during this time?</label>
-              <input class="activities__text-field" type="text" name="goal" placeholder="goal placeholder">
+            <div class="activities__input-block">
+              <div class="activities__input-goals-block">
+                <label class="activities__input-description" for="goal">What would you like to accomplish during this time?</label>
+                <input class="activities__text-field" type="text" name="goal" placeholder="goal placeholder">
+              </div>
             </div>
-
-            <!-- place minutes and seconds in same black??? -->
-
-            <div class="activities__input-field">
-              <label for="minutes">Minutes</label>
-              <input class="activities__text-field" type="text" name="minutes" placeholder="minutes placeholder">
-              <label for="seconds">Seconds</label>
-              <input class="activities__text-field" type="text" name="seconds" placeholder="seconds placeholder">
+            <div class="activities__input-block">
+              <div class="activities__input-goals-block activities__input-goals-block--margin">
+                <label class="activities__input-description" for="minutes">Minutes</label>
+                <input class="activities__text-field" type="text" name="minutes" placeholder="minutes placeholder">
+              </div>
+              <div class="activities__input-goals-block">
+                <label class="activities__input-description" for="seconds">Seconds</label>
+                <input class="activities__text-field" type="text" name="seconds" placeholder="seconds placeholder">
+              </div>
             </div>
-            <button type="activities__start-button">START ACTIVITY</button>
+            <button class="activities__start-button" type="button">START ACTIVITY</button>
           </div>
         </form>
       </div>

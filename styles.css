@@ -31,6 +31,7 @@ html {
   height: 100%;
   width: 100%;
   justify-content: space-between;
+  min-height: 650px;
 }
 
 .activities__new-activity {
@@ -77,6 +78,7 @@ html {
   text-align: left;
   position: relative;
   padding: 0 38px;
+  margin-bottom: 0px;
 }
 
 .activities__icons {
@@ -105,11 +107,14 @@ html {
 .activities__input-section {
   display: flex;
   flex-direction: column;
+  padding: 0px 38px;
 }
 
-.activities__input-field {
+.activities__input-block {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  padding-bottom: 65px;
+  justify-content: space-between;
 }
 
 .activities__text-field {
@@ -121,6 +126,22 @@ html {
   border-right: none;
   border-bottom: solid #CBC9CF 2px;
   padding: 3px 10px;
+  font-size: 15px;
+  line-height: 2;
+}
+
+.activities__input-description {
+  text-align: initial;
+}
+
+.activities__input-goals-block {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+}
+
+.activities__input-goals-block--margin {
+  margin-right: 120px;
 }
 
 .activities__activity-button {
@@ -129,7 +150,12 @@ html {
 }
 
 .activities__start-button {
-
+  border: none;
+  padding: 8px 25px;
+  font-size: 15px;
+  border-radius: 6px;
+  color: #45424D;
+  align-self: flex-end;
 }
 
 .activities__past-activity {
