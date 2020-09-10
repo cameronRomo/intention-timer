@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- re local storage -->
+  <link rel="stylesheet" href="./styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+  <title>Document</title>
+</head>
+<body class="body">
+  <div class="body__header">
+    <a class="body__header__title">INTENTION TIMER</a>
+  </div>
+  <div class="activities">
+    <div class="activities__new-activity">
+      <h2 class="activities__new-activity__h2">New Activity</h2>
+      <div class="activities__select-category">
+        <form class="activities__form">
+          <p class="activities__p">Select a category:</p>
+          <div class="activities__icons">
+            <figure class="activities__figure">
+              <img src="./assets/study.svg" alt="study icon" class="activities__activity-button" name="category" value="study">
+              <figcaption>Study</figcaption>
+            </figure>
+            <figure class="activities__figure">
+              <img src="./assets/meditate.svg" alt="meditate icon" class="activities__activity-button" name="category" value="meditate">
+              <figcaption>Meditate</figcaption>
+            </figure>
+            <figure class="activities__figure">
+              <img src="./assets/exercise.svg" alt="exercise icon" class="activities__activity-button" name="category" value="exercise">
+              <figcaption>Exercise</figcaption>
+            </figure>
+          </div>
+          <div class="activities__input-section">
+            <div class="activities__input-block">
+              <div class="activities__input-goals-block">
+                <label class="activities__input-description" for="goal">What would you like to accomplish during this time?</label>
+                <input class="activities__text-field" type="text" name="goal" placeholder="">
+              </div>
+            </div>
+            <div class="activities__input-block">
+              <div class="activities__input-goals-block activities__input-goals-block--margin">
+                <label class="activities__input-description" for="minutes">Minutes</label>
+                <input class="activities__text-field" type="text" name="minutes" placeholder="">
+              </div>
+              <div class="activities__input-goals-block">
+                <label class="activities__input-description" for="seconds">Seconds</label>
+                <input class="activities__text-field" type="text" name="seconds" placeholder="">
+              </div>
+            </div>
+            <button class="activities__start-button" type="button">START ACTIVITY</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="activities__past-activity">
+      <h2 class="activities__past-activity__h2">Past Activities</h2>
+      <p class="activities__past-activity__p">You haven't logged any activities yet.<br>
+        Complete the form to the left to get started!</p>
+    </div>
+  </div>
+</body>
+</html>
