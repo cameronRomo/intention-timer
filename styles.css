@@ -9,13 +9,11 @@ html {
   position: relative;
   margin: 0px;
   height: 100%;
-  /* width: 100%; */
 }
 
 .body__header {
   color: #FFF;
   display: block;
-  /* background-color: #45424D; */
   font-size: 22px;
   text-align: center;
   padding: 13px;
@@ -31,7 +29,7 @@ html {
   height: 100%;
   width: 100%;
   justify-content: space-between;
-  min-height: 650px;
+  min-height: 600px;
 }
 
 .activities__new-activity {
@@ -41,16 +39,12 @@ html {
 }
 
 .activities__new-activity__h2 {
-  /* display: flex; */
-  /* new addition */
   position: relative;
-  /* align-self: flex-start; */
   left: 5%;
 }
 
 .activities__new-activity {
   background-color: #2B2733;
-/* new additions */
   display: flex;
   flex-direction: column;
 }
@@ -60,12 +54,11 @@ html {
   width: 90%;
   height: 100%;
   text-align: center;
-  /* mew addition */
   align-self: center;
   border-radius: 5px;
   color: #FFF;
   box-shadow: 8px 8px 5px 5px #26222D;
-  max-height: 84%;
+  max-height: 63%;
   min-height: 60%;
 }
 
@@ -99,9 +92,6 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* padding: 5px;
-  max-width: 220px;
-  margin: auto; */
 }
 
 .activities__input-section {
@@ -113,7 +103,7 @@ html {
 .activities__input-block {
   display: flex;
   flex-direction: row;
-  padding-bottom: 65px;
+  padding-bottom: 50px;
   justify-content: space-between;
 }
 
@@ -128,6 +118,7 @@ html {
   padding: 3px 10px;
   font-size: 15px;
   line-height: 2;
+  color: #CBC9CF;
 }
 
 .activities__input-description {
