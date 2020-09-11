@@ -13,6 +13,7 @@ var dataModel = {
 
 document.querySelector(".activities__icons-section").addEventListener('click', function(event) {
   if (event.currentTarget.id !== undefined) {      // // TODO currentTarget or target?
+
   selectCategory(event.target);
   }
   dataModel.category = ""  // add .value to object model
@@ -43,8 +44,8 @@ function clearOtherCategories(el) {
     if (allCategories[i].id !== el.id) {
       console.log(el);
       console.log(allCategories[i].id);
-      allCategories[i].classList.remove(`${allCategories[i].id}--active`)       // TODO remove class from p tag in activities__figure child node
 
+      allCategories[i].classList.remove(`${allCategories[i].id}--active`)       // TODO remove class from p tag in activities__figure child node
     }
   }
 };
