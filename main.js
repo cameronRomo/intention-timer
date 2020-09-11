@@ -12,22 +12,18 @@ var dataModel = {
 // EVENT LISTENERS 👇
 
 document.querySelector(".activities__icons-section").addEventListener('click', function(event) {
-  if (event.currentTarget.id !== undefined) {  // to avoid calling fxn w/click empty space (currentTarget or target?)
+  if (event.currentTarget.id !== undefined) {
     selectCategory(event.target);
   }
 });
 
-document.querySelector("#minutes-seconds-block").addEventListener('keydown', function(event) {
+document.querySelector("#minutes-seconds-block").addEventListener('keypress', function(event) {
   var validChars = [8,9,13,18,92,92,93];  //  keys like tab, etc
-  var selectedTimeInput = event.target.value;
   if (event.keyCode >= 48 && event.keyCode <= 57 || validChars.includes(event.keyCode) === true) {
-    var number = KeyboardEvent.key.slice(-1);
-    selectedTimeInput += number;
-    if (event.target.title === minutes) {
-      dataModelCollect(minutes)
-    } else {
-      dataModelCollect(seconds)
-    }
+    console.log(event.target.value);
+    event.currentTarget.addEventListener('keyup', function(event) {
+      minuteSecondCheck(event);
+    });
   } else {
     alert("ONLY NUMBERS");
     event.preventDefault();
@@ -72,25 +68,27 @@ function descriptionCheck() {
 }
 
 function dataModelCollect(data) {
+  console.log(data.title);
   if (data.title === "category") {
-    dataModel[data.title] = data.id
     console.log(dataModel[data.title]);
     console.log(data.id);
+    dataModel[data.title] = data.id
   } else {
+    console.log(data.value);
     dataModel[data.title] = data.value;
   }
 }
 
-// } else if (data.title === "minutes" || "seconds") {
-
-
-//
-// category: "",
-// description: "",
-// minutes: "",
-// seconds: "",
-// completed: false,
-// id:
+function minuteSecondCheck(element) {
+  var timeInputField = element.target
+  if (timeInputField.title === "minutes") {
+    console.log(timeInputField.title, "minutes");
+    dataModelCollect(timeInputField);
+  } else {
+    console.log(timeInputField.title, "seconds");
+    dataModelCollect(timeInputField);
+  }
+}
 
 //
 // timer ends
