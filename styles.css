@@ -84,10 +84,12 @@ html {
   background-size: 20px 20px;
   background-position: center 5px;
   cursor: pointer;
+  z-index: 900;
   transition: all .2s ease-in-out;
 }
 .activities__figure > p {
   margin-top: 24px;
+  z-index: 899;
 }
 .activities__input-section {
   display: flex;
