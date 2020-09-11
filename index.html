@@ -18,31 +18,31 @@
           <form class="activities__form">
             <p class="activities__p">Select a category:</p>
             <div class="activities__icons-section">
-              <figure id="study-icon" class="study-icon activities__figure" value="study">
-                <p id="study-icon" class="activities__icons__p">Study</p>
+              <figure title="category" id="study" class="study-icon activities__figure">
+                <p id="study-p" class="activities__icons__p">Study</p>
               </figure>
-              <figure id="meditate-icon" class="meditate-icon activities__figure" value="meditate">
-                <p id="meditate-icon">Meditate</p>
+              <figure id="meditate" title="category" class="meditate-icon activities__figure">
+                <p id="meditate-p">Meditate</p>
               </figure>
-              <figure id="exercise-icon" class="exercise-icon activities__figure" value="exercise">
-                <p id="exercise-icon">Exercise</p>
+              <figure id="exercise" title="category" class="exercise-icon activities__figure">
+                <p id="exercise-p">Exercise</p>
               </figure>
             </div>
             <div class="activities__input-section">
               <div class="activities__input-block">
-                <div class="activities__input-goals-block">
-                  <label class="activities__input-description" for="goal">What would you like to accomplish during this time?</label>
-                  <input id="goals-input" class="activities__text-field" type="text" name="goal" placeholder="">
+                <div class="activities__input-description-block">
+                  <label class="activities__input-description" for="description">What would you like to accomplish during this time?</label>
+                  <input id="description-input" title="description" class="activities__text-field" type="text" name="description" placeholder="">
                 </div>
               </div>
-              <div class="activities__input-block">
-                <div class="activities__input-goals-block activities__input-goals-block--margin">
+              <div id="minutes-seconds-block" class="activities__input-block">
+                <div class="activities__input-description-block activities__input-description-block--margin">
                   <label class="activities__input-description" for="minutes">Minutes</label>
-                  <input id="minutes-input" class="activities__text-field" type="number" name="minutes" placeholder="">
+                  <input id="minutes-input" title="minutes" class="activities__text-field" type="text" name="minutes">
                 </div>
-                <div class="activities__input-goals-block">
+                <div class="activities__input-description-block">
                   <label class="activities__input-description" for="seconds">Seconds</label>
-                  <input id="seconds-input" class="activities__text-field" type="number" name="seconds" placeholder="">
+                <input id="seconds-input" title="seconds" class="activities__text-field" type="text" name="seconds">
                 </div>
               </div>
               <button class="activities__start-button" type="button">START ACTIVITY</button>
