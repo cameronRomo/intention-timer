@@ -63,7 +63,7 @@ html {
   padding: 0 38px;
   margin-bottom: 0px;
 }
-.activities__icons {
+.activities__icons-section {
   display: flex;
   justify-content: space-between;
   padding-bottom: 42px;
@@ -83,6 +83,8 @@ html {
   background-repeat: no-repeat;
   background-size: 20px 20px;
   background-position: center 5px;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
 }
 .activities__figure > p {
   margin-top: 24px;
@@ -122,10 +124,7 @@ html {
 .activities__input-goals-block--margin {
   margin-right: 120px;
 }
-/* .activities__activity-button {
-  height: 20px;
-  width: 20px;
-} */
+
 .study-icon {
   background-image: url(./assets/study.svg);
 }
@@ -133,7 +132,6 @@ html {
   color: #B3FD78;
   border-color: #B3FD78;
   background-image: url(./assets/study-active.svg);
-  transition: all .2s ease-in-out;
 }
 .study-icon--active {
   color: #B3FD78;
@@ -147,9 +145,8 @@ html {
   color: #C278FD;
   border-color: #C278FD;
   background-image: url(./assets/meditate-active.svg);
-  transition: all .2s ease-in-out;
 }
-.meditate-icon:hover:active {
+.meditate-icon--active {
   color: #C278FD;
   border-color: #C278FD;
   background-image: url(./assets/meditate-active.svg);
@@ -161,9 +158,8 @@ html {
   color: #FD8078;
   border-color: #FD8078;
   background-image: url(./assets/exercise-active.svg);
-  transition: all .2s ease-in-out;
 }
-.exercise-icon:hover:active {
+.exercise-icon--active {
   color: #FD8078;
   border-color: #FD8078;
   background-image: url(./assets/exercise-active.svg);
@@ -195,3 +191,7 @@ html {
 .activities__cards {
   color: #FFF;
 }
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+   -webkit-appearance: none; 
+  margin: 0;
+ } 
