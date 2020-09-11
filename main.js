@@ -47,59 +47,11 @@ function clearOtherCategories(el) {
   }
 };
 
-//   ###$$$$#$$#$$ working old code
-
-// function errorCheck() {
-//   var allFields = document.querySelectorAll(".activities__text-field");
-//   var goals = document.querySelector("#goals-input").value;
-//   var minutes = document.querySelector("#minutes-input").value;
-//   var seconds = document.querySelector("#seconds-input").value;
-
-
-//   //check all fields have a values
-//   //check values are legit
-
-//   if (!goals.trim().length === true) {
-//     alert("Why you do dat?!?! ¯\_( ͡° ͜ʖ ͡°)_/¯")
-//     //  display error "description required" + icon below field
-//     return
-//   }
-//   // make sure numbers are numbers
-//   if (isNaN(minutes) === true || (isNaN(seconds) === true)) {
-//     e.preventDefault();
-//     alert("your numbers fkt")
-//   }
-//
-//   // if (sec OR min
-// }
-
-
-//  ######### pasdt iteration CODE
-
-// document.querySelectorAll("#seconds-input #minutes-input").addEventListener("keydown", function(event) {
-//   // var goals = document.querySelector("#goals-input");
-//   var minutes = document.querySelector("#minutes-input");
-//   var seconds = document.querySelector("#seconds-input");
-//   var invalidChars = ["-","+","e",];
-//
-//   if (!goals.trim().length === true) {
-//     alert("Why you do dat?!?! ¯\_( ͡° ͜ʖ ͡°)_/¯")
-//     //  display error "description required" + icon below field
-//     return
-//   } else {
-//      push goal into datamodel
-//   }
-//
-//   if (event.key.includes(invalidChars)) {
-//     alert("no letters sorry");
-//     event.preventDefault();
-//   }
-// });
 
 
 //working on ordering
 document.querySelector("#minutes-seconds-block").addEventListener('keydown', function(event) {
-  var validChars = [8,9,13,18,92,92];  //  keys like tab, etc
+  var validChars = [8,9,13,18,92,92,93];  //  keys like tab, etc
   var selectedTimeInput = event.target.value;
 
   if (event.keyCode >= 48 && event.keyCode <= 57 || validChars.includes(event.keyCode) === true) {
