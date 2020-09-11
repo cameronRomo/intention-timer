@@ -12,7 +12,7 @@ var dataModel = {
 // EVENT LISTENERS 👇
 
 document.querySelector(".activities__icons-section").addEventListener('click', function(event) {
-  if (event.currentTarget.id !== undefined || null) {
+  if (event.target.id !== undefined || null || "") {
     selectCategory(event.target);
   }
 });
@@ -41,6 +41,7 @@ document.querySelector(".activities__start-button").addEventListener('click', fu
 function selectCategory(category) {
   // category.classList.add(`${category.id}-icon--active`);
   document.querySelector(`#${category.id}`).classList.add(`${category.id}-icon--active`);
+  console.log(category.id);
   dataModelCollect(category);
   clearOtherCategories(category);
 };
