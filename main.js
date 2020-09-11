@@ -20,20 +20,24 @@ document.querySelector(".activities__icons-section").addEventListener('click', f
 document.querySelector("#minutes-seconds-block").addEventListener('keydown', function(event) {
   var validChars = [8,9,13,18,92,92,93];  //  keys like tab, etc
   var selectedTimeInput = event.target.value;
-
   if (event.keyCode >= 48 && event.keyCode <= 57 || validChars.includes(event.keyCode) === true) {
-    console.log(event.keyCode);
     var number = KeyboardEvent.key.slice(-1);
     selectedTimeInput += number;
+    if (event.target.title === minutes) {
+      dataModelCollect(minutes)
+    } else {
+      dataModelCollect(seconds)
+    }
   } else {
     alert("ONLY NUMBERS");
     event.preventDefault();
   }
-      // TODO visual/text indicator
+      // TODO function visual/text indicator
 });
 
 document.querySelector(".activities__start-button").addEventListener('click', function() {
-  goalCheck();  // for empty string
+  descriptionCheck();
+  // for empty string
   // collect data from all fields
   // if min or sec empty = 0
   // TODO start timer
@@ -41,39 +45,45 @@ document.querySelector(".activities__start-button").addEventListener('click', fu
 
 // EVENT HANDLERS 👇
 
-function selectCategory(el) {
-  el.classList.add(`${el.id}--active`);
-  clearOtherCategories(el);
+function selectCategory(category) {
+  category.classList.add(`${category.id}--active`);
+  dataModelCollect(category);
+  clearOtherCategories(category);
 };
 
-function clearOtherCategories(el) {
+function clearOtherCategories(category) {
   var allCategories = document.querySelectorAll(".activities__figure");
   for (var i = 0; i < allCategories.length; i++) {
-    if (allCategories[i].id !== el.id) {
-      console.log(el);
-      console.log(allCategories[i].id);
-
+    if (allCategories[i].id !== category.id) {
       allCategories[i].classList.remove(`${allCategories[i].id}--active`)       // TODO remove class from p tag in activities__figure child node
     }
   }
 };
 
-function goalCheck() {
-  var goals = document.querySelector("#goals-input");
-  if (!goals.value.trim().length === true) {
-    alert("Why you do dat?!?! ¯\_( ͡° ͜ʖ ͡°)_/¯")
+function descriptionCheck() {
+  var description = document.querySelector("#description-input");
+  if (!description.value.trim().length === true) {
+    alert("Need a description ¯\_( ͡° ͜ʖ ͡°)_/¯")
     //  display error "description required" + icon below field
     return
   } else {
-    dataModelCollect("description")
+    dataModelCollect(description)
   }
 }
 
 function dataModelCollect(data) {
-
-
-  dataModel.description = goal
+  if (data.title === "category") {
+    dataModel[data.title] = data.id
+    console.log(dataModel[data.title]);
+    console.log(data.id);
+  } else {
+    dataModel[data.title] = data.value;
+  }
 }
+
+// } else if (data.title === "minutes" || "seconds") {
+
+
 //
 // category: "",
 // description: "",

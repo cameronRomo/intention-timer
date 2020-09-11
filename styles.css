@@ -116,12 +116,12 @@ html {
 .activities__input-description {
   text-align: initial;
 }
-.activities__input-goals-block {
+.activities__input-description-block {
   display: flex;
   flex-direction: column;
   flex: auto;
 }
-.activities__input-goals-block--margin {
+.activities__input-description-block--margin {
   margin-right: 120px;
 }
 
