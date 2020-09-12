@@ -9,6 +9,7 @@ var dataModel = {
   id: "",
 };
 
+var newCard = new Activity(dataModel)
 // EVENT LISTENERS 👇
 
 document.querySelector(".activities__icons-section").addEventListener('click', function(event) {
@@ -23,7 +24,7 @@ document.querySelector("#minutes-seconds-block").addEventListener('keypress', fu
   // console.log(event.keyCode);
   // console.log(event.target.value);
 
-  var validKeys = [8,9,13,18,92,92,93];  //  keys like tab, etc
+  var validKeys = [8, 9, 13, 18, 92, 93];  //  keys like tab, etc
   if (event.keyCode >= 48 && event.keyCode <= 57 || validKeys.includes(event.keyCode) === true) {   // TODO future note in readme that this iterates 2x with each additional number
     event.currentTarget.addEventListener('keyup', function(event) {
       dataModelCollect(event.target);
@@ -76,6 +77,22 @@ function dataModelCollect(element) {
   } else {
     dataModel[element.title] = element.value;
   }
+}
+
+function startTimer() {
+    var timer = 90;    // total time from data model minutes*60 + seconds
+    var minutes;
+    var seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        document.querySelector('#time').textContent = minutes + ":" + seconds;
+        if (--timer < 0) {
+          timer = totalTime;
+        }
+    }, 1000);
 }
 
 // timer ends

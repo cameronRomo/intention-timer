@@ -7,12 +7,15 @@ class Activity {
     this.completed = false;
     this.id = Date.now();
   }
+
   beginTimer() {
 
   }
+
   markComplete() {
 
   }
+  
   saveToStorage() {
 
   }
