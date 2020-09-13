@@ -84,7 +84,7 @@ function startTimer() {
     var minutes;
     var seconds;
     setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
+        minutes = parseInt(timer / 60, 10); // regex for numerical system
         seconds = parseInt(timer % 60, 10);
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
@@ -92,7 +92,7 @@ function startTimer() {
         if (--timer < 0) {
           timer = totalTime;
         }
-    }, 1000);
+    }, 1000); // Fire function after 1000 miliseconds
 }
 
 // timer ends
