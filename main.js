@@ -6,7 +6,7 @@ var dataModel = {
   seconds: "",
   completed: false,
   id: "",
-  startTimePlaceholder: "",
+  startTimePlaceholder: "05:00",
 }
 var newCard = new Activity(dataModel)
 // EVENT LISTENERS 👇
@@ -91,10 +91,10 @@ function hideElements() {
 function insertTimer() {
   document.querySelector(".activities__select-category").insertAdjacentHTML('afterbegin',
   `
-  <div class="activities__timer activities__timer--${dataModel.category}">
+  <div class="activities__timer">
     <div class="activities__timer__description">${dataModel.description}</div>
     <div class="activities__timer__clock">${dataModel.startTimePlaceholder}</div>
-    <svg class="activities__timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <svg class="activities__timer__svg activities__timer--${dataModel.category}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
       <g class="activities__timer__circle">
         <circle class="activities__timer__path-elapsed" cx="50" cy="50" r="45" />
         <path
@@ -125,6 +125,7 @@ function startTimer() {
   var seconds;
   var timeLeft = totalTime;
   dataModel.startTimePlaceholder = minutes + ":" + seconds;
+  document.querySelector(".activities__timer__button__text").innerText = ""
   setInterval(function () {
     minutes = parseInt(timeLeft / 60, 10);
     seconds = parseInt(timeLeft % 60, 10);
@@ -132,8 +133,8 @@ function startTimer() {
     seconds = seconds < 10 ? "0" + seconds : seconds;
     document.querySelector(".activities__timer__clock").textContent = minutes + ":" + seconds;
     if (timeLeft-- <= 0) {
+      dataModel.completed = true;
       document.querySelector(".activities__timer__clock").textContent = "Time's Up!!!"
-      // TODO complete activity = true
       // TODO Completion message
     }
     setCircleDasharray((timeLeft / totalTime));
