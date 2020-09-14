@@ -219,6 +219,7 @@ html {
   position: relative;
   height: 300px;
   width: 300px;
+  padding: 40px;
 }
 /* Removes SVG styling that would hide the time label */
 .activities__timer__circle {
@@ -227,7 +228,7 @@ html {
 }
 /* The SVG path that displays the timer's progress */
 .activities__timer__path-elapsed {
-  stroke-width: 3px;
+  stroke-width: 1px;
   stroke: #45424D;
 }
 .activities__timer__button {
@@ -247,11 +248,13 @@ html {
 
 .activities__timer__button__text {
   cursor: pointer;
+  font-size: 24px;
+  margin-top: 222px;
 }
 
 .activities__timer__path-remaining {
   /* Just as thick as the original ring */
-  stroke-width: 3px;
+  stroke-width: 1px;
   /* Rounds the line endings to create a seamless circle */
   stroke-linecap: round;
   /* Makes sure the animation starts at the top of the circle */
@@ -262,6 +265,13 @@ html {
   /* Allows the ring to change color when the color value updates */
   stroke: currentColor;
 }
+
+.activities__timer__clock {
+  font-family: sans-serif;
+  font-weight: bolder;
+  font-size: 40px;
+}
+
 .activities__timer__svg {
   /* Flips the svg and makes the animation to move left-to-right */
   transform: scaleX(-1);
