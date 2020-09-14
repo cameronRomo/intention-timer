@@ -1,3 +1,14 @@
+button {
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+
+button:hover {
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  background-color: #ff69b4;
+}
+
 html {
   height: 100%;
   width: 100%;
@@ -127,6 +138,12 @@ html {
 .activities__input-description-block--margin {
   margin-right: 120px;
 }
+
+.warning-icon {
+  color: #EFB7EC;
+  background-image: url(./assets/study.svg);
+}
+
 .study-icon {
   background-image: url(./assets/study.svg);
 }
@@ -161,6 +178,7 @@ html {
   border-color: #FD8078;
   background-image: url(./assets/exercise-active.svg);
 }
+
 .exercise-icon--active {
   color: #FD8078;
   border-color: #FD8078;
@@ -174,15 +192,18 @@ html {
   color: #45424D;
   align-self: flex-end;
 }
+
 .activities__past-activity {
   width: 34%;
   margin-left: 5px;
   background-color: #2B2733;
   min-width: 300px;
 }
+
 .activities__past-activity__h2 {
   margin-left: 35px;
 }
+
 .activities__past-activity__p {
   text-align: center;
   margin-left: 35px;
@@ -198,14 +219,7 @@ html {
   top: -9999px !important;
   left: -9999px !important;
 }
-/* .activities__timer {
-  position: center;
-  border-style: dashed;
-  border-color: darkorchid;
-  border-radius: 50%;
-  height: 300px;
-  width: 300px;
-} */
+
 .activities__timer--study {
   color: #B3FD78;
 }
@@ -219,6 +233,7 @@ html {
   position: relative;
   height: 300px;
   width: 300px;
+  padding: 40px;
 }
 /* Removes SVG styling that would hide the time label */
 .activities__timer__circle {
@@ -227,7 +242,7 @@ html {
 }
 /* The SVG path that displays the timer's progress */
 .activities__timer__path-elapsed {
-  stroke-width: 3px;
+  stroke-width: 1px;
   stroke: #45424D;
 }
 .activities__timer__button {
@@ -244,9 +259,31 @@ html {
   /* Sort of an arbitrary number; adjust to your liking */
   font-size: 50px;
 }
+
+.activities__timer__log-button {
+  border: none;
+  width: 223px;
+  padding: 8px 25px;
+  font-size: 15px;
+  border-radius: 6px;
+  color: #45424D;
+  align-self: flex-end;
+  margin: 20px;
+}
+
+.activities__timer__button__text {
+  cursor: pointer;
+  font-size: 22px;
+  margin-top: 273px;
+}
+
+.activities__timer__button__text--nopointer {
+  cursor: none;
+}
+
 .activities__timer__path-remaining {
   /* Just as thick as the original ring */
-  stroke-width: 3px;
+  stroke-width: 1px;
   /* Rounds the line endings to create a seamless circle */
   stroke-linecap: round;
   /* Makes sure the animation starts at the top of the circle */
@@ -257,10 +294,25 @@ html {
   /* Allows the ring to change color when the color value updates */
   stroke: currentColor;
 }
+
+.activities__timer__clock {
+  font-family: sans-serif;
+  font-weight: bolder;
+  font-size: 70px;
+}
+
 .activities__timer__svg {
   /* Flips the svg and makes the animation to move left-to-right */
-  transform: scaleX(-1);
+  transform: scaleX(1);
+  width: 223px;
+  margin-top: 26px;
 }
+
+/* .activities__timer__svg:hover {
+  transition: all .6s ease-in-out;
+  background-color: salmon;
+} */
+
 .activities__select-category--apply-flex {
   display: flex;
   justify-content: center;
