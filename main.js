@@ -169,6 +169,15 @@ function startTimer() {
   }, 1000);
 }
 
+// // Divides time left by the defined time limit.
+// function calculateTimeFraction() {
+//   return timeLeft / totalTime;
+// }
+// Update the dasharray value as time passes, starting with 283
+function setCircleDasharray(timeFraction) {
+  var circleDasharray = `${(timeFraction * 283).toFixed(0)} 283`; //  fraction of circle left
+  document.querySelector(".activities__timer__path-remaining").setAttribute("stroke-dasharray", circleDasharray);  //  sets circle amount to above fraction, fires every second
+}
 // timer ends
 // instantiate class object
 // clear fields
