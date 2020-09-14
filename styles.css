@@ -244,6 +244,11 @@ html {
   /* Sort of an arbitrary number; adjust to your liking */
   font-size: 50px;
 }
+
+.activities__timer__button__text {
+  cursor: pointer;
+}
+
 .activities__timer__path-remaining {
   /* Just as thick as the original ring */
   stroke-width: 3px;
