@@ -6,9 +6,10 @@ var dataModel = {
   seconds: "",
   completed: false,
   id: "",
-  startTimePlaceholder: "05:00",
 }
-var newCard = new Activity(dataModel)
+
+var pastActivityData = [];
+
 // EVENT LISTENERS 👇
 document.querySelector(".activities__icons-section").addEventListener("click", function(event) {
   if (event.target.id !== undefined || event.target.id !== null || event.target.id !== "") {
@@ -25,9 +26,6 @@ document.querySelector(".activities__select-category").addEventListener('click',
 });
 
 document.querySelector("#minutes-seconds-block").addEventListener("keypress", function(event) {
-  // console.log(event);
-  // console.log(event.keyCode);
-  // console.log(event.target.value);
   var validKeys = [8, 9, 13, 18, 92, 93];  //  keys like tab, etc
   if (event.keyCode >= 48 && event.keyCode <= 57 || validKeys.includes(event.keyCode) === true) {   // TODO future note in readme that this iterates 2x with each additional number
     event.currentTarget.addEventListener("keyup", function(event) {
@@ -97,7 +95,7 @@ function insertTimer() {
   `
   <div class="activities__timer">
     <div class="activities__timer__description">${dataModel.description}</div>
-    <div class="activities__timer__clock">${dataModel.startTimePlaceholder}</div>
+    <div class="activities__timer__clock">CHANGETHIS</div>
     <svg class="activities__timer__svg activities__timer--${dataModel.category}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
       <g class="activities__timer__circle">
         <circle class="activities__timer__path-elapsed" cx="50" cy="50" r="45" />
@@ -126,31 +124,32 @@ function insertTimer() {
 
 function startTimer() {
   var totalTime = Number(`${dataModel.minutes}` * 60) + Number(`${dataModel.seconds}`);
-  var minutes;
-  var seconds;
-  var timeLeft = totalTime;
-  dataModel.startTimePlaceholder = minutes + ":" + seconds;
   document.querySelector(".activities__timer__button__text").innerText = ""
-  setInterval(function () {
+  countDown(totalTime);
+}
+
+function countDown(totalTime) {
+  var timeLeft = totalTime;
+  setInterval(function() {
     minutes = parseInt(timeLeft / 60, 10);
     seconds = parseInt(timeLeft % 60, 10);
     minutes = minutes < 10 ? "0" + minutes : minutes;
     seconds = seconds < 10 ? "0" + seconds : seconds;
     document.querySelector(".activities__timer__clock").textContent = minutes + ":" + seconds;
     if (timeLeft-- <= 0) {
-      dataModel.completed = true;
-      document.querySelector(".activities__timer__button__text").textContent = "COMPLETE!";
-      document.querySelector(".activities__timer__clock").textContent = "00:00";
-      document.querySelector('.activities__timer__log-button').classList.remove("--hidden");
-      document.querySelector('.activities__timer__button__text').classList.add(".activities__timer__button__text--nopointer");
+      timerComplete();
     }
     setCircleDasharray((timeLeft / totalTime));
   }, 1000);
 }
-// // Divides time left by the defined time limit.
-// function calculateTimeFraction() {
-//   return timeLeft / totalTime;
-// }
+
+function timerComplete() {
+  dataModel.completed = true;
+  document.querySelector(".activities__timer__button__text").textContent = "COMPLETE!";
+  document.querySelector(".activities__timer__clock").textContent = "00:00";
+  document.querySelector('.activities__timer__log-button').classList.remove("--hidden");
+  document.querySelector('.activities__timer__button__text').classList.add(".activities__timer__button__text--nopointer");
+}
 
 // Update the dasharray value as time passes, starting with 283
 function setCircleDasharray(timeFraction) {
