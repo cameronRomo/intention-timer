@@ -42,9 +42,11 @@ document.querySelector("#minutes-seconds-block").addEventListener("keypress", fu
 
 document.querySelector(".activities__start-button").addEventListener("click", function() {
   // TODO  make sure all fields are filled before starting timer
-  descriptionCheck();
-  hideElements();
-  insertTimer();
+  if (descriptionCheck() !== false) {
+    descriptionCheck();
+    hideElements();
+    insertTimer();
+  }
 });
 
 // EVENT HANDLERS 👇
@@ -67,12 +69,12 @@ function clearOtherCategories(category) {
 function descriptionCheck() {
   var description = document.querySelector("#description-input");
   if (!description.value.trim().length === true) {
-    description.classList.add("warning-icon");
-    alert("Need a description ¯\_( ͡° ͜ʖ ͡°)_/¯")
-
-    //  display error "description required" + icon below field
-    return
+    document.querySelector(".activities__input-description__warning").classList.remove("--hidden");
+    document.querySelector("#description-input").classList.add("activities__text-field--warning");
+    return false
   } else {
+    document.querySelector(".activities__input-description__warning").classList.add("--hidden");
+    document.querySelector("#description-input").classList.remove("activities__text-field--warning");
     dataModelCollect(description)
   }
 }
