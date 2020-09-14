@@ -112,6 +112,7 @@ html {
   display: flex;
   flex-direction: row;
   padding-bottom: 50px;
+  padding-top: 20px;
   justify-content: space-between;
 }
 .activities__text-field {
@@ -139,9 +140,20 @@ html {
   margin-right: 120px;
 }
 
-.warning-icon {
+.activities__input-description__warning {
   color: #EFB7EC;
-  background-image: url(./assets/study.svg);
+  display: block;
+  align-self: flex-start;
+  padding-top: 70px;
+  position: absolute;
+}
+
+.activities__text-field--warning {
+  border-bottom: solid #EFB7EC 2px;
+}
+
+.activities__input-description__warning-icon {
+  height: 15px;
 }
 
 .study-icon {
