@@ -7,9 +7,7 @@ var dataModel = {
   completed: false,
   id: "",
 }
-
 var pastActivityData = [];
-
 // EVENT LISTENERS 👇
 document.querySelector(".activities__icons-section").addEventListener("click", function(event) {
   if (event.target.id !== undefined || event.target.id !== null || event.target.id !== "") {
@@ -17,14 +15,12 @@ document.querySelector(".activities__icons-section").addEventListener("click", f
   }
   return
 });
-
 document.querySelector(".activities__select-category").addEventListener('click', function(event) {
   var start = event.target.className;
   if ("activities__timer__button__text" === start) {
     startTimer();
   }
 });
-
 document.querySelector("#minutes-seconds-block").addEventListener("keypress", function(event) {
   var validKeys = [8, 9, 13, 18, 92, 93];  //  keys like tab, etc
   if (event.keyCode >= 48 && event.keyCode <= 57 || validKeys.includes(event.keyCode) === true) {   // TODO future note in readme that this iterates 2x with each additional number
@@ -37,23 +33,21 @@ document.querySelector("#minutes-seconds-block").addEventListener("keypress", fu
   }
   // TODO function visual/text indicator
 });
-
 document.querySelector(".activities__start-button").addEventListener("click", function() {
   // TODO  make sure all fields are filled before starting timer
-  if (descriptionCheck() !== false) {
+  if (descriptionCheck() !== false  && checkTime() !==false  && checkCategory() !== false) {
+    console.log(checkTime());
     descriptionCheck();
     hideElements();
     insertTimer();
   }
 });
-
 // EVENT HANDLERS 👇
 function selectCategory(category) {
   document.querySelector(`#${category.id}`).classList.add(`${category.id}-icon--active`);
   dataModelCollect(category);
   clearOtherCategories(category);
 };
-
 // target icon block with ${catagory.id}
 function clearOtherCategories(category) {
   var allCategories = document.querySelectorAll(".activities__figure");
@@ -63,7 +57,6 @@ function clearOtherCategories(category) {
     }
   }
 };
-
 function descriptionCheck() {
   var description = document.querySelector("#description-input");
   if (!description.value.trim().length === true) {
@@ -76,7 +69,22 @@ function descriptionCheck() {
     dataModelCollect(description)
   }
 }
-
+function checkTime() {
+  if (dataModel.minutes !== "" || dataModel.seconds !== "") {
+    return true
+  } else {
+    alert("placeholder: add times")
+    return false
+  }
+}
+function checkCategory() {
+  if (dataModel.category !== "") {
+    return true
+  } else {
+    alert("placeholder: pick category jackass")
+    return false
+  }
+}
 function dataModelCollect(element) {
   if (element.title === "category") {
     dataModel[element.title] = element.id
@@ -84,12 +92,10 @@ function dataModelCollect(element) {
     dataModel[element.title] = element.value;
   }
 }
-
 function hideElements() {
   document.querySelector(".activities__new-activity__h2").innerText = "Current Activity";
   document.querySelector(".activities__form").classList.add("--hidden");
 }
-
 function insertTimer() {
   document.querySelector(".activities__select-category").insertAdjacentHTML('afterbegin',
   `
@@ -121,13 +127,11 @@ function insertTimer() {
   );
   document.querySelector(".activities__select-category").classList.add("activities__select-category--apply-flex");
 }
-
 function startTimer() {
   var totalTime = Number(`${dataModel.minutes}` * 60) + Number(`${dataModel.seconds}`);
   document.querySelector(".activities__timer__button__text").innerText = ""
   countDown(totalTime);
 }
-
 function countDown(totalTime) {
   var timeLeft = totalTime;
   setInterval(function() {
@@ -142,7 +146,6 @@ function countDown(totalTime) {
     setCircleDasharray((timeLeft / totalTime));
   }, 1000);
 }
-
 function timerComplete() {
   dataModel.completed = true;
   document.querySelector(".activities__timer__button__text").textContent = "COMPLETE!";
@@ -150,7 +153,6 @@ function timerComplete() {
   document.querySelector('.activities__timer__log-button').classList.remove("--hidden");
   document.querySelector('.activities__timer__button__text').classList.add(".activities__timer__button__text--nopointer");
 }
-
 // Update the dasharray value as time passes, starting with 283
 function setCircleDasharray(timeFraction) {
   var circleDasharray = `${(timeFraction * 283).toFixed(0)} 283`; //  fraction of circle left
