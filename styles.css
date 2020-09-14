@@ -198,14 +198,7 @@ html {
   top: -9999px !important;
   left: -9999px !important;
 }
-/* .activities__timer {
-  position: center;
-  border-style: dashed;
-  border-color: darkorchid;
-  border-radius: 50%;
-  height: 300px;
-  width: 300px;
-} */
+
 .activities__timer--study {
   color: #B3FD78;
 }
@@ -246,10 +239,19 @@ html {
   font-size: 50px;
 }
 
+.activities__timer__log-button {
+  border: none;
+  padding: 8px 25px;
+  font-size: 15px;
+  border-radius: 6px;
+  color: #45424D;
+  align-self: flex-end;
+}
+
 .activities__timer__button__text {
   cursor: pointer;
   font-size: 24px;
-  margin-top: 222px;
+  margin-top: 230px;
 }
 
 .activities__timer__path-remaining {
@@ -269,12 +271,13 @@ html {
 .activities__timer__clock {
   font-family: sans-serif;
   font-weight: bolder;
-  font-size: 40px;
+  font-size: 70px;
 }
 
 .activities__timer__svg {
   /* Flips the svg and makes the animation to move left-to-right */
-  transform: scaleX(-1);
+  transform: scaleX(1);
+  width: 223px;
 }
 .activities__select-category--apply-flex {
   display: flex;
