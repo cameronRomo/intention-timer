@@ -148,6 +148,27 @@ function insertTimer() {
   startTimer();
 }
 
+function startTimer() {
+  var totalTime = Number(`${dataModel.minutes}` * 60) + Number(`${dataModel.seconds}`);
+  var minutes;
+  var seconds;
+  var timeLeft = totalTime;
+  dataModel.startTimePlaceholder = minutes + ":" + seconds;
+  setInterval(function () {
+    minutes = parseInt(timeLeft / 60, 10);
+    seconds = parseInt(timeLeft % 60, 10);
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    document.querySelector(".activities__timer__clock").textContent = minutes + ":" + seconds;
+    if (timeLeft-- <= 0) {
+      document.querySelector(".activities__timer__clock").textContent = "Time's Up!!!"
+      // TODO complete activity = true
+      // TODO Completion message
+    }
+    setCircleDasharray((timeLeft / totalTime));
+  }, 1000);
+}
+
 // timer ends
 // instantiate class object
 // clear fields
