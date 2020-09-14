@@ -1,5 +1,4 @@
 // GLOBAL VARIABLES 👇
-
 var dataModel = {
   category: "",
   description: "",
@@ -7,23 +6,20 @@ var dataModel = {
   seconds: "",
   completed: false,
   id: "",
+  startTimePlaceholder: "",
 }
-
 var newCard = new Activity(dataModel)
 // EVENT LISTENERS 👇
-
 document.querySelector(".activities__icons-section").addEventListener("click", function(event) {
   if (event.target.id !== undefined || event.target.id !== null || event.target.id !== "") {
     selectCategory(event.target);
   }
   return
 });
-
 document.querySelector("#minutes-seconds-block").addEventListener("keypress", function(event) {
   // console.log(event);
   // console.log(event.keyCode);
   // console.log(event.target.value);
-
   var validKeys = [8, 9, 13, 18, 92, 93];  //  keys like tab, etc
   if (event.keyCode >= 48 && event.keyCode <= 57 || validKeys.includes(event.keyCode) === true) {   // TODO future note in readme that this iterates 2x with each additional number
     event.currentTarget.addEventListener("keyup", function(event) {
@@ -35,24 +31,19 @@ document.querySelector("#minutes-seconds-block").addEventListener("keypress", fu
   }
   // TODO function visual/text indicator
 });
-
 document.querySelector(".activities__start-button").addEventListener("click", function() {
 // TODO  make sure all fields are filled before starting timer
   descriptionCheck();
   hideElements();
-  startTimer();
+  insertTimer();
 });
-
 // EVENT HANDLERS 👇
-
 function selectCategory(category) {
   document.querySelector(`#${category.id}`).classList.add(`${category.id}-icon--active`);
   dataModelCollect(category);
   clearOtherCategories(category);
 };
-
 // target icon block with ${catagory.id}
-
 function clearOtherCategories(category) {
   var allCategories = document.querySelectorAll(".activities__figure");
   for (var i = 0; i < allCategories.length; i++) {
@@ -61,7 +52,6 @@ function clearOtherCategories(category) {
     }
   }
 };
-
 function descriptionCheck() {
   var description = document.querySelector("#description-input");
   if (!description.value.trim().length === true) {
@@ -72,7 +62,6 @@ function descriptionCheck() {
     dataModelCollect(description)
   }
 }
-
 function dataModelCollect(element) {
   if (element.title === "category") {
     dataModel[element.title] = element.id
@@ -80,42 +69,10 @@ function dataModelCollect(element) {
     dataModel[element.title] = element.value;
   }
 }
-
-function startTimer() {
-  var totalTime = Number(`${dataModel.minutes}` * 60) + Number(`${dataModel.seconds}`);
-  console.log(totalTime);
-  var minutes;
-  var seconds;
-  document.querySelector(".activities__select-category").insertAdjacentHTML("afterbegin", //TODO: break this out into seperate function for SRP
-    `
-    <div class="activities__timer--${dataModel.category}">
-      <div class="activities__timer__description">${dataModel.description}</div>
-      <div class="activities__timer__clock"></div>
-      <button class="activities__timer__button">START</button>
-    </div>
-    `
-  );
-
-  setInterval(function () {
-    minutes = parseInt(totalTime / 60, 10);
-    seconds = parseInt(totalTime % 60, 10);
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-
-    document.querySelector(".activities__timer").textContent = minutes + ":" + seconds;
-
-    if (--totalTime <= 0) {
-      // totalTime = 0;
-      document.querySelector(".activities__timer").textContent = "Time's Up!!!"
-    }
-  }, 1000);  // speed of countdown
-}
-
 function hideElements() {
   document.querySelector(".activities__new-activity__h2").innerText = "Current Activity";
   document.querySelector(".activities__form").classList.add("--hidden");
 }
-
 function insertTimer() {
   document.querySelector(".activities__select-category").insertAdjacentHTML('afterbegin',
   `
@@ -147,7 +104,6 @@ function insertTimer() {
   document.querySelector(".activities__select-category").classList.add("activities__select-category--apply-flex");
   startTimer();
 }
-
 function startTimer() {
   var totalTime = Number(`${dataModel.minutes}` * 60) + Number(`${dataModel.seconds}`);
   var minutes;
@@ -168,7 +124,6 @@ function startTimer() {
     setCircleDasharray((timeLeft / totalTime));
   }, 1000);
 }
-
 // // Divides time left by the defined time limit.
 // function calculateTimeFraction() {
 //   return timeLeft / totalTime;
@@ -178,6 +133,3 @@ function setCircleDasharray(timeFraction) {
   var circleDasharray = `${(timeFraction * 283).toFixed(0)} 283`; //  fraction of circle left
   document.querySelector(".activities__timer__path-remaining").setAttribute("stroke-dasharray", circleDasharray);  //  sets circle amount to above fraction, fires every second
 }
-// timer ends
-// instantiate class object
-// clear fields
