@@ -67,7 +67,9 @@ function clearOtherCategories(category) {
 function descriptionCheck() {
   var description = document.querySelector("#description-input");
   if (!description.value.trim().length === true) {
+    description.classList.add("warning-icon");
     alert("Need a description ¯\_( ͡° ͜ʖ ͡°)_/¯")
+
     //  display error "description required" + icon below field
     return
   } else {
@@ -113,6 +115,7 @@ function insertTimer() {
     <span class="activities__timer__button">
       <p class="activities__timer__button__text">START</p>
     </span>
+    <button class="--hidden activities__timer__log-button">LOG ACTIVITY</button>
   </div>
   `
   );
@@ -134,8 +137,10 @@ function startTimer() {
     document.querySelector(".activities__timer__clock").textContent = minutes + ":" + seconds;
     if (timeLeft-- <= 0) {
       dataModel.completed = true;
-      document.querySelector(".activities__timer__clock").textContent = "Time's Up!!!"
-      // TODO Completion message
+      document.querySelector(".activities__timer__button__text").textContent = "COMPLETE!";
+      document.querySelector(".activities__timer__clock").textContent = "00:00";
+      document.querySelector('.activities__timer__log-button').classList.remove("--hidden");
+      document.querySelector('.activities__timer__button__text').classList.add(".activities__timer__button__text--nopointer");
     }
     setCircleDasharray((timeLeft / totalTime));
   }, 1000);
