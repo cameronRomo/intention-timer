@@ -144,8 +144,9 @@ html {
   color: #EFB7EC;
   display: block;
   align-self: flex-start;
-  padding-top: 70px;
+  margin-top: 70px;
   position: absolute;
+  cursor: default;
 }
 
 .activities__text-field--warning {
