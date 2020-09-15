@@ -270,6 +270,32 @@ html {
   height: 200px;
   margin-top: 45px;
   width: inherit;
+  transition: all .2s ease-in-out;
+}
+
+.activities__timer__svg--active {
+  transform: scale(1.2);
+  transition: all .2s ease-in-out;
+}
+
+.activities__timer__svg--pulse {
+  animation-name: pulse;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  transition: all .2s ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    fill: white;
+  }
+  50% {
+    fill: salmon;
+    transform: scale(1.2);
+  }
+  100% {
+    fill: white;
+  }
 }
 
 /* Removes SVG styling that would hide the time label */
@@ -337,23 +363,4 @@ html {
 .activities__select-category--apply-flex {
   display: flex;
   justify-content: center;
-}
-
-.activities__timer__svg--pulse {
-  animation-name: pulse;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
-}
-
-@keyframes pulse {
-  0% {
-    fill: white;
-  }
-  50% {
-    fill: salmon;
-    transform: scale(1.2);
-  }
-  100% {
-    fill: white;
-  }
 }

@@ -133,6 +133,7 @@ function startTimer() {
   countDown(totalTime);
 }
 function countDown(totalTime) {
+  applyCountDownStyle("begin");
   var timeLeft = totalTime;
   setInterval(function() {
     minutes = parseInt(timeLeft / 60, 10);
@@ -146,15 +147,31 @@ function countDown(totalTime) {
     setCircleDasharray((timeLeft / totalTime));
   }, 1000);
 }
+
 function timerComplete() {
   dataModel.completed = true;
   document.querySelector(".activities__timer__start-button__text").textContent = "COMPLETE!";
   document.querySelector(".activities__timer__clock").textContent = "00:00";
   document.querySelector('.activities__timer__log-button').classList.remove("--hidden");
   document.querySelector('.activities__timer__start-button__text').classList.add(".activities__timer__start-button__text--nopointer");
+  applyCountDownStyle("end");
 }
+
 // Update the dasharray value as time passes, starting with 283
 function setCircleDasharray(timeFraction) {
   var circleDasharray = `${(timeFraction * 283).toFixed(0)} 283`; //  fraction of circle left
   document.querySelector(".activities__timer__path-remaining").setAttribute("stroke-dasharray", circleDasharray);  //  sets circle amount to above fraction, fires every second
+}
+
+// styling functions
+
+function applyCountDownStyle(beginEnd) {
+  var svgClass = document.querySelector("svg").classList
+  if (beginEnd === "begin") {
+    svgClass.remove("activities__timer__svg--pulse");
+    svgClass.add("activities__timer__svg--active");
+  } else if (beginEnd === "end") {
+    svgClass.add("activities__timer__svg--pulse");
+    svgClass.remove("activities__timer__svg--active");
+  }
 }
