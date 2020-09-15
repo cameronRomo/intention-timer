@@ -245,6 +245,31 @@ html {
 }
 
 /*   ****    TIMER    ****     */
+.getSet {
+  position: absolute;
+  align-self: center;
+  top: 29%;
+  opacity: .5;
+  transition: all 2s ease-out;
+}
+
+.getSet__are--switch {
+  top: 37%;
+  opacity: 0;
+}
+
+.getSet__you {
+  top: 37%;
+}
+
+.getSet__you--switch {
+  top: 29%;
+  opacity: 0;
+}
+
+.activities__timer__description {
+  font-size: 30px;
+}
 
 .activities__timer--study {
   color: #B3FD78;
@@ -394,12 +419,8 @@ html {
   margin: 0px;
   position: absolute;
   align-self: center;
-  top: 47.5%;
+  top: 51%;
 }
-
-/* .activities__timer__start-button__text:hover + .activities__timer__circle {
-  fill: pink;
-} */
 
 .--nopointer:hover {
   cursor: none;

@@ -15,13 +15,6 @@ document.querySelector(".activities__icons-section").addEventListener("click", f
   }
   return
 });
-document.querySelector(".activities__select-category").addEventListener('click', function(event) {
-  var startBtn = event.target.className;
-  console.log(startBtn);
-  if (startBtn.includes("activities__timer__start-button__text") && dataModel.completed === false) {
-    startTimer();
-  }
-});
 document.querySelector("#minutes-seconds-block").addEventListener("keypress", function(event) {
   var validKeys = [8, 9, 13, 18, 92, 93];  //  keys like tab, etc
   if (event.keyCode >= 48 && event.keyCode <= 57 || validKeys.includes(event.keyCode) === true) {   // TODO future note in readme that this iterates 2x with each additional number
@@ -41,6 +34,14 @@ document.querySelector(".activities__start-button").addEventListener("click", fu
     descriptionCheck();
     hideElements();
     insertTimer();
+  }
+});
+
+document.querySelector(".activities__select-category").addEventListener('click', function(event) {
+  var startBtn = event.target.className;
+  console.log(startBtn);
+  if (startBtn.includes("activities__timer__start-button__text") && dataModel.completed === false) {
+    startTimer();
   }
 });
 // EVENT HANDLERS 👇
@@ -166,12 +167,12 @@ function timerComplete() {
   applyCountDownStyle("end");
 }
 // styling functions
+
 // Update the dasharray value as time passes, starting with 283
 function setCircleDasharray(timeFraction) {
   var circleDasharray = `${(timeFraction * 283).toFixed(0)} 283`; //  fraction of circle left
   document.querySelector(".activities__timer__path-remaining").setAttribute("stroke-dasharray", circleDasharray);  //  sets circle amount to above fraction, fires every second
 }
-
 function applyCountDownStyle(beginEnd) {
   var pathClass = document.querySelector("path").classList
   var svgClass = document.querySelector("svg").classList
