@@ -15,12 +15,6 @@ document.querySelector(".activities__icons-section").addEventListener("click", f
   }
   return
 });
-document.querySelector(".activities__select-category").addEventListener('click', function(event) {
-  var start = event.target.className;
-  if ("activities__timer__button__text" === start) {
-    startTimer();
-  }
-});
 document.querySelector("#minutes-seconds-block").addEventListener("keypress", function(event) {
   var validKeys = [8, 9, 13, 18, 92, 93];  //  keys like tab, etc
   if (event.keyCode >= 48 && event.keyCode <= 57 || validKeys.includes(event.keyCode) === true) {   // TODO future note in readme that this iterates 2x with each additional number
@@ -40,6 +34,14 @@ document.querySelector(".activities__start-button").addEventListener("click", fu
     descriptionCheck();
     hideElements();
     insertTimer();
+  }
+});
+
+document.querySelector(".activities__select-category").addEventListener('click', function(event) {
+  var startBtn = event.target.className;
+  console.log(startBtn);
+  if (startBtn.includes("activities__timer__start-button__text") && dataModel.completed === false) {
+    startTimer();
   }
 });
 // EVENT HANDLERS 👇
@@ -101,14 +103,18 @@ function insertTimer() {
   `
   <div class="activities__timer">
     <div class="activities__timer__description">${dataModel.description}</div>
-    <div class="activities__timer__clock">CHANGETHIS</div>
-    <svg class="activities__timer__svg activities__timer--${dataModel.category}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <div class="activities__timer__clock">hello</div>
+    <svg class="activities__timer__svg activities__timer__svg--pulse activities__timer--${dataModel.category}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
       <g class="activities__timer__circle">
         <circle class="activities__timer__path-elapsed" cx="50" cy="50" r="45" />
         <path
         id="activities-timer-path-remaining"
         stroke-dasharray="283"
-        class="activities__timer__path-remaining activities__timer--${dataModel.category}"
+        class="
+        activities__timer__path-remaining
+        activities__timer__path-remaining--pulse
+        activities__timer--${dataModel.category}
+        "
         d="
           M 50, 50
           m -45, 0
@@ -118,10 +124,14 @@ function insertTimer() {
         ></path>
       </g>
     </svg>
-    <span class="activities__timer__button">
-      <p class="activities__timer__button__text">START</p>
-    </span>
-    <button class="--hidden activities__timer__log-button">LOG ACTIVITY</button>
+  <span class="activities__timer__start-button">
+    <p
+    class="
+    activities__timer__start-button__text
+    activities__timer__start-button__text--begin
+    ">Ready?</p>
+  </span>
+  <button class="--hidden activities__timer__log-button">LOG ACTIVITY</button>
   </div>
   `
   );
@@ -129,10 +139,11 @@ function insertTimer() {
 }
 function startTimer() {
   var totalTime = Number(`${dataModel.minutes}` * 60) + Number(`${dataModel.seconds}`);
-  document.querySelector(".activities__timer__button__text").innerText = ""
+  document.querySelector(".activities__timer__start-button__text").innerText = ""
   countDown(totalTime);
 }
 function countDown(totalTime) {
+  applyCountDownStyle("begin");
   var timeLeft = totalTime;
   setInterval(function() {
     minutes = parseInt(timeLeft / 60, 10);
@@ -146,15 +157,36 @@ function countDown(totalTime) {
     setCircleDasharray((timeLeft / totalTime));
   }, 1000);
 }
+
 function timerComplete() {
   dataModel.completed = true;
-  document.querySelector(".activities__timer__button__text").textContent = "COMPLETE!";
+  document.querySelector(".activities__timer__start-button__text").textContent = "COMPLETE!";
   document.querySelector(".activities__timer__clock").textContent = "00:00";
   document.querySelector('.activities__timer__log-button').classList.remove("--hidden");
-  document.querySelector('.activities__timer__button__text').classList.add(".activities__timer__button__text--nopointer");
+  document.querySelector('.activities__timer__start-button__text').classList.add(".--nopointer");
+  applyCountDownStyle("end");
 }
+// styling functions
+
 // Update the dasharray value as time passes, starting with 283
 function setCircleDasharray(timeFraction) {
   var circleDasharray = `${(timeFraction * 283).toFixed(0)} 283`; //  fraction of circle left
   document.querySelector(".activities__timer__path-remaining").setAttribute("stroke-dasharray", circleDasharray);  //  sets circle amount to above fraction, fires every second
+}
+function applyCountDownStyle(beginEnd) {
+  var pathClass = document.querySelector("path").classList
+  var svgClass = document.querySelector("svg").classList
+  var startBtnTextClass = document.querySelector(".activities__timer__start-button__text").classList
+  if (beginEnd === "begin") {
+    startBtnTextClass.remove("activities__timer__start-button__text--begin");
+    pathClass.remove("activities__timer__path-remaining--pulse");
+    svgClass.remove("activities__timer__svg--pulse");
+    svgClass.add("activities__timer__svg--active");
+    svgClass.add("activities__timer__svg--animate");
+  } else if (beginEnd === "end") {
+    startBtnTextClass.add("activities__timer__start-button__text--end");
+    svgClass.add("activities__timer__svg--pulse-complete");
+    svgClass.remove("activities__timer__svg--active");
+    svgClass.remove("activities__timer__svg--animate");
+  }
 }
