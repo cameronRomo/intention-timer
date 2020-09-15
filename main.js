@@ -17,7 +17,7 @@ document.querySelector(".activities__icons-section").addEventListener("click", f
 });
 document.querySelector(".activities__select-category").addEventListener('click', function(event) {
   var start = event.target.className;
-  if ("activities__timer__button__text" === start) {
+  if ("activities__timer__start-button__text" === start) {
     startTimer();
   }
 });
@@ -118,8 +118,8 @@ function insertTimer() {
         ></path>
       </g>
     </svg>
-    <span class="activities__timer__button">
-      <p class="activities__timer__button__text">START</p>
+    <span class="activities__timer__start-button">
+      <p class="activities__timer__start-button__text">START</p>
     </span>
     <button class="--hidden activities__timer__log-button">LOG ACTIVITY</button>
   </div>
@@ -129,7 +129,7 @@ function insertTimer() {
 }
 function startTimer() {
   var totalTime = Number(`${dataModel.minutes}` * 60) + Number(`${dataModel.seconds}`);
-  document.querySelector(".activities__timer__button__text").innerText = ""
+  document.querySelector(".activities__timer__start-button__text").innerText = ""
   countDown(totalTime);
 }
 function countDown(totalTime) {
@@ -148,10 +148,10 @@ function countDown(totalTime) {
 }
 function timerComplete() {
   dataModel.completed = true;
-  document.querySelector(".activities__timer__button__text").textContent = "COMPLETE!";
+  document.querySelector(".activities__timer__start-button__text").textContent = "COMPLETE!";
   document.querySelector(".activities__timer__clock").textContent = "00:00";
   document.querySelector('.activities__timer__log-button').classList.remove("--hidden");
-  document.querySelector('.activities__timer__button__text').classList.add(".activities__timer__button__text--nopointer");
+  document.querySelector('.activities__timer__start-button__text').classList.add(".activities__timer__start-button__text--nopointer");
 }
 // Update the dasharray value as time passes, starting with 283
 function setCircleDasharray(timeFraction) {

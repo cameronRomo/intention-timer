@@ -30,6 +30,10 @@ html {
 .body__header__title {
   width: 100%;
 }
+
+/*   ****    NEW ACTIVITY BLOCKS   ****     */
+
+
 .activities {
   color: #CBC9CF;
   display: flex;
@@ -52,6 +56,10 @@ html {
   display: flex;
   flex-direction: column;
 }
+
+/*   ****    CATEGORY SELECTION    ****     */
+
+
 .activities__select-category {
   background-color: #45424D;
   width: 90%;
@@ -207,6 +215,8 @@ html {
   align-self: flex-end;
 }
 
+/*    ****   PAST ACTIVITIES    ****    */
+
 .activities__past-activity {
   width: 34%;
   margin-left: 5px;
@@ -234,6 +244,8 @@ html {
   left: -9999px !important;
 }
 
+/*   ****    TIMER    ****     */
+
 .activities__timer--study {
   color: #B3FD78;
 }
@@ -254,12 +266,13 @@ html {
   fill: none;
   stroke: none;
 }
-/* The SVG path that displays the timer's progress */
+/* TIMER PROGRESS */
 .activities__timer__path-elapsed {
   stroke-width: 1px;
   stroke: #45424D;
 }
-.activities__timer__button {
+
+.activities__timer__start-button {
   position: absolute;
   /* Size should match the parent container */
   width: 300px;
@@ -285,13 +298,13 @@ html {
   margin: 20px;
 }
 
-.activities__timer__button__text {
+.activities__timer__start-button__text {
   cursor: pointer;
   font-size: 22px;
   margin-top: 273px;
 }
 
-.activities__timer__button__text--nopointer {
+.activities__timer__start-button__text--nopointer {
   cursor: none;
 }
 
