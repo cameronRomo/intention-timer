@@ -18,7 +18,7 @@ document.querySelector(".activities__icons-section").addEventListener("click", f
 document.querySelector(".activities__select-category").addEventListener('click', function(event) {
   var startBtn = event.target.className;
   console.log(startBtn);
-  if (startBtn.includes("activities__timer__start-button__text")) {
+  if (startBtn.includes("activities__timer__start-button__text") && dataModel.completed === false) {
     startTimer();
   }
 });
@@ -162,17 +162,15 @@ function timerComplete() {
   document.querySelector(".activities__timer__start-button__text").textContent = "COMPLETE!";
   document.querySelector(".activities__timer__clock").textContent = "00:00";
   document.querySelector('.activities__timer__log-button').classList.remove("--hidden");
-  document.querySelector('.activities__timer__start-button__text').classList.add(".activities__timer__start-button__text--nopointer");
+  document.querySelector('.activities__timer__start-button__text').classList.add(".--nopointer");
   applyCountDownStyle("end");
 }
-
+// styling functions
 // Update the dasharray value as time passes, starting with 283
 function setCircleDasharray(timeFraction) {
   var circleDasharray = `${(timeFraction * 283).toFixed(0)} 283`; //  fraction of circle left
   document.querySelector(".activities__timer__path-remaining").setAttribute("stroke-dasharray", circleDasharray);  //  sets circle amount to above fraction, fires every second
 }
-
-// styling functions
 
 function applyCountDownStyle(beginEnd) {
   var pathClass = document.querySelector("path").classList
@@ -183,8 +181,11 @@ function applyCountDownStyle(beginEnd) {
     pathClass.remove("activities__timer__path-remaining--pulse");
     svgClass.remove("activities__timer__svg--pulse");
     svgClass.add("activities__timer__svg--active");
+    svgClass.add("activities__timer__svg--animate");
   } else if (beginEnd === "end") {
-    svgClass.add("activities__timer__svg--pulse");
+    startBtnTextClass.add("activities__timer__start-button__text--end");
+    svgClass.add("activities__timer__svg--pulse-complete");
     svgClass.remove("activities__timer__svg--active");
+    svgClass.remove("activities__timer__svg--animate");
   }
 }

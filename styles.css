@@ -292,9 +292,7 @@ html {
   transition: all .2s ease-in-out;
 }
 
-.activities__timer__svg--pulse {
-  margin-top: 16.5%;
-  height: 100px;
+.activities__timer__svg--pulse-complete {
   animation-name: pulse;
   animation-duration: 5s;
   animation-iteration-count: infinite;
@@ -312,9 +310,10 @@ html {
   opacity: 1;
 }
 
-.activities__timer__start-button__text--complete {
+.activities__timer__start-button__text--end {
   transition: all .2s ease-in-out;
   opacity: 1;
+  cursor: default;
 }
 
 .activities__timer__path-remaining {
@@ -331,9 +330,26 @@ html {
   stroke: currentcolor;
 }
 
+/*   ***   ANIMATIONS   ***   */
+
+.activities__timer__svg--pulse {
+  margin-top: 16.5%;
+  height: 100px;
+  animation-name: pulse;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  transition: all .2s ease-in-out;
+}
+
+.activities__timer__svg--animate {
+  animation-name: timerActive;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+}
+
 .activities__timer__path-remaining--pulse {
   stroke: none;
-  animation-name: pulseCircle;
+  animation-name: colorPulse;
   animation-duration: 5s;
   animation-iteration-count: infinite;
 }
@@ -348,15 +364,27 @@ html {
   }
 }
 
-@keyframes pulseCircle {
+@keyframes colorPulse {
   0% {
     fill: rgb(68,66,77);
   }
   50% {
-    fill: salmon;
+    fill: currentcolor;
   }
   100% {
     fill: rgb(68,66,77);
+  }
+}
+
+@keyframes timerActive {
+  0% {
+
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+
   }
 }
 
@@ -369,11 +397,11 @@ html {
   top: 47.5%;
 }
 
-.activities__timer__start-button__text:hover + .activities__timer__circle {
+/* .activities__timer__start-button__text:hover + .activities__timer__circle {
   fill: pink;
-}
+} */
 
-.activities__timer__start-button__text--nopointer {
+.--nopointer:hover {
   cursor: none;
 }
 
