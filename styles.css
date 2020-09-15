@@ -69,8 +69,8 @@ html {
   border-radius: 5px;
   color: #FFF;
   box-shadow: 8px 8px 5px 5px #26222D;
-  max-height: 63%;
-  min-height: 60%;
+  max-height: 525px;
+  min-height: 500px;
 }
 .activities__form {
   padding: 30px;
@@ -257,10 +257,21 @@ html {
 }
 .activities__timer {
   position: relative;
-  height: 300px;
-  width: 300px;
+  height: 450px;
+  width: 600px;
   padding: 40px;
+  display: flex;
+  flex-direction: column;
+  top: 10px;
 }
+
+.activities__timer__svg {
+  /* Flips the svg and makes the animation to move left-to-right */
+  height: 200px;
+  margin-top: 45px;
+  width: inherit;
+}
+
 /* Removes SVG styling that would hide the time label */
 .activities__timer__circle {
   fill: none;
@@ -268,23 +279,21 @@ html {
 }
 /* TIMER PROGRESS */
 .activities__timer__path-elapsed {
-  stroke-width: 1px;
-  stroke: #45424D;
+  stroke-width: 3px;
+  stroke: #44424D;
 }
 
 .activities__timer__start-button {
+  cursor: pointer;
+  font-size: 22px;
+  margin: 0px;
   position: absolute;
-  /* Size should match the parent container */
-  width: 300px;
-  height: 300px;
-  /* Keep the label aligned to the top */
-  top: 0;
-  /* Create a flexible box that centers content vertically and horizontally */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* Sort of an arbitrary number; adjust to your liking */
-  font-size: 50px;
+  align-self: center;
+  top: 47.5%;
+}
+
+.activities__timer__start-button__text--nopointer {
+  cursor: none;
 }
 
 .activities__timer__log-button {
@@ -294,23 +303,13 @@ html {
   font-size: 15px;
   border-radius: 6px;
   color: #45424D;
-  align-self: flex-end;
-  margin: 20px;
-}
-
-.activities__timer__start-button__text {
-  cursor: pointer;
-  font-size: 22px;
-  margin-top: 273px;
-}
-
-.activities__timer__start-button__text--nopointer {
-  cursor: none;
+  align-self: center;
+  margin-top: 50px;
 }
 
 .activities__timer__path-remaining {
   /* Just as thick as the original ring */
-  stroke-width: 1px;
+  stroke-width: 3px;
   /* Rounds the line endings to create a seamless circle */
   stroke-linecap: round;
   /* Makes sure the animation starts at the top of the circle */
@@ -326,14 +325,9 @@ html {
   font-family: sans-serif;
   font-weight: bolder;
   font-size: 70px;
+  width: 600px;
 }
 
-.activities__timer__svg {
-  /* Flips the svg and makes the animation to move left-to-right */
-  transform: scaleX(1);
-  width: 223px;
-  margin-top: 26px;
-}
 
 /* .activities__timer__svg:hover {
   transition: all .6s ease-in-out;
@@ -343,4 +337,23 @@ html {
 .activities__select-category--apply-flex {
   display: flex;
   justify-content: center;
+}
+
+.activities__timer__svg--pulse {
+  animation-name: pulse;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes pulse {
+  0% {
+    fill: white;
+  }
+  50% {
+    fill: salmon;
+    transform: scale(1.2);
+  }
+  100% {
+    fill: white;
+  }
 }

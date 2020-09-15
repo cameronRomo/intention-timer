@@ -101,8 +101,8 @@ function insertTimer() {
   `
   <div class="activities__timer">
     <div class="activities__timer__description">${dataModel.description}</div>
-    <div class="activities__timer__clock">CHANGETHIS</div>
-    <svg class="activities__timer__svg activities__timer--${dataModel.category}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <div class="activities__timer__clock">hello</div>
+    <svg class="activities__timer__svg activities__timer__svg--pulse activities__timer--${dataModel.category}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
       <g class="activities__timer__circle">
         <circle class="activities__timer__path-elapsed" cx="50" cy="50" r="45" />
         <path
@@ -118,10 +118,10 @@ function insertTimer() {
         ></path>
       </g>
     </svg>
-    <span class="activities__timer__start-button">
-      <p class="activities__timer__start-button__text">START</p>
-    </span>
-    <button class="--hidden activities__timer__log-button">LOG ACTIVITY</button>
+  <span class="activities__timer__start-button">
+    <p class="activities__timer__start-button__text">Ready?</p>
+  </span>
+  <button class="--hidden activities__timer__log-button">LOG ACTIVITY</button>
   </div>
   `
   );
