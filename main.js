@@ -16,8 +16,9 @@ document.querySelector(".activities__icons-section").addEventListener("click", f
   return
 });
 document.querySelector(".activities__select-category").addEventListener('click', function(event) {
-  var start = event.target.className;
-  if ("activities__timer__start-button__text" === start) {
+  var startBtn = event.target.className;
+  console.log(startBtn);
+  if (startBtn.includes("activities__timer__start-button__text")) {
     startTimer();
   }
 });
@@ -108,7 +109,11 @@ function insertTimer() {
         <path
         id="activities-timer-path-remaining"
         stroke-dasharray="283"
-        class="activities__timer__path-remaining activities__timer--${dataModel.category}"
+        class="
+        activities__timer__path-remaining
+        activities__timer__path-remaining--pulse
+        activities__timer--${dataModel.category}
+        "
         d="
           M 50, 50
           m -45, 0
@@ -119,7 +124,11 @@ function insertTimer() {
       </g>
     </svg>
   <span class="activities__timer__start-button">
-    <p class="activities__timer__start-button__text">Ready?</p>
+    <p
+    class="
+    activities__timer__start-button__text
+    activities__timer__start-button__text--begin
+    ">Ready?</p>
   </span>
   <button class="--hidden activities__timer__log-button">LOG ACTIVITY</button>
   </div>
@@ -166,8 +175,12 @@ function setCircleDasharray(timeFraction) {
 // styling functions
 
 function applyCountDownStyle(beginEnd) {
+  var pathClass = document.querySelector("path").classList
   var svgClass = document.querySelector("svg").classList
+  var startBtnTextClass = document.querySelector(".activities__timer__start-button__text").classList
   if (beginEnd === "begin") {
+    startBtnTextClass.remove("activities__timer__start-button__text--begin");
+    pathClass.remove("activities__timer__path-remaining--pulse");
     svgClass.remove("activities__timer__svg--pulse");
     svgClass.add("activities__timer__svg--active");
   } else if (beginEnd === "end") {

@@ -265,12 +265,26 @@ html {
   top: 10px;
 }
 
+/*     STYLING TIMER     */
+
 .activities__timer__svg {
   /* Flips the svg and makes the animation to move left-to-right */
   height: 200px;
   margin-top: 45px;
   width: inherit;
   transition: all .2s ease-in-out;
+}
+/* Removes SVG styling that would hide the time label */
+.activities__timer__circle {
+  fill: none;
+  stroke: none;
+  transition: all .2s ease-in-out;
+}
+
+/* TIMER PROGRESS */
+.activities__timer__path-elapsed {
+  stroke-width: 3px;
+  stroke: #44424D;
 }
 
 .activities__timer__svg--active {
@@ -279,34 +293,71 @@ html {
 }
 
 .activities__timer__svg--pulse {
+  margin-top: 16.5%;
+  height: 100px;
   animation-name: pulse;
   animation-duration: 5s;
   animation-iteration-count: infinite;
   transition: all .2s ease-in-out;
 }
 
+.activities__timer__start-button__text--begin {
+  transition: all .2s ease-in-out;
+  opacity: .1;
+}
+
+.activities__timer__start-button__text:hover {
+  transition: all .2s ease-in-out;
+  transform: scale(1.2);
+  opacity: 1;
+}
+
+.activities__timer__start-button__text--complete {
+  transition: all .2s ease-in-out;
+  opacity: 1;
+}
+
+.activities__timer__path-remaining {
+  /* Just as thick as the original ring */
+  stroke-width: 3px;
+  /* Rounds the line endings to create a seamless circle */
+  stroke-linecap: round;
+  /* Makes sure the animation starts at the top of the circle */
+  transform: rotate(90deg);
+  transform-origin: center;
+  /* One second aligns with the speed of the countdown timer */
+  transition: 1s linear all;
+  /* Allows the ring to change color when the color value updates */
+  stroke: currentcolor;
+}
+
+.activities__timer__path-remaining--pulse {
+  stroke: none;
+  animation-name: pulseCircle;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+
 @keyframes pulse {
   0% {
-    fill: white;
   }
   50% {
-    fill: salmon;
     transform: scale(1.2);
   }
   100% {
-    fill: white;
   }
 }
 
-/* Removes SVG styling that would hide the time label */
-.activities__timer__circle {
-  fill: none;
-  stroke: none;
-}
-/* TIMER PROGRESS */
-.activities__timer__path-elapsed {
-  stroke-width: 3px;
-  stroke: #44424D;
+@keyframes pulseCircle {
+  0% {
+    fill: rgb(68,66,77);
+  }
+  50% {
+    fill: salmon;
+  }
+  100% {
+    fill: rgb(68,66,77);
+  }
 }
 
 .activities__timer__start-button {
@@ -316,6 +367,10 @@ html {
   position: absolute;
   align-self: center;
   top: 47.5%;
+}
+
+.activities__timer__start-button__text:hover + .activities__timer__circle {
+  fill: pink;
 }
 
 .activities__timer__start-button__text--nopointer {
@@ -331,20 +386,6 @@ html {
   color: #45424D;
   align-self: center;
   margin-top: 50px;
-}
-
-.activities__timer__path-remaining {
-  /* Just as thick as the original ring */
-  stroke-width: 3px;
-  /* Rounds the line endings to create a seamless circle */
-  stroke-linecap: round;
-  /* Makes sure the animation starts at the top of the circle */
-  transform: rotate(90deg);
-  transform-origin: center;
-  /* One second aligns with the speed of the countdown timer */
-  transition: 1s linear all;
-  /* Allows the ring to change color when the color value updates */
-  stroke: currentColor;
 }
 
 .activities__timer__clock {
