@@ -173,6 +173,7 @@ html {
   color: #B3FD78;
   border-color: #B3FD78;
   background-image: url(./assets/study-active.svg);
+  transform: scale(1.05)
 }
 .study-icon--active {
   color: #B3FD78;
@@ -186,6 +187,7 @@ html {
   color: #C278FD;
   border-color: #C278FD;
   background-image: url(./assets/meditate-active.svg);
+  transform: scale(1.05)
 }
 .meditate-icon--active {
   color: #C278FD;
@@ -199,6 +201,7 @@ html {
   color: #FD8078;
   border-color: #FD8078;
   background-image: url(./assets/exercise-active.svg);
+  transform: scale(1.05)
 }
 
 .exercise-icon--active {
@@ -444,7 +447,9 @@ html {
   width: 600px;
 }
 
-
+.--opacity50 {
+  opacity: .4;
+}
 /* .activities__timer__svg:hover {
   transition: all .6s ease-in-out;
   background-color: salmon;
