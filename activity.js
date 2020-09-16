@@ -1,9 +1,9 @@
 class Activity {
-  constructor(category, description, minutes, seconds) {
-    this.category = category;
-    this.description = description;
-    this.minutes = minutes;
-    this.seconds = seconds;
+  constructor(dataModel) {
+    this.category = dataModel.category;
+    this.description = dataModel.description;
+    this.minutes = dataModel.minutes;
+    this.seconds = dataModel.seconds;
     this.completed = false;
     this.id = Date.now();
   }
@@ -15,7 +15,7 @@ class Activity {
   markComplete() {
 
   }
-  
+
   saveToStorage() {
 
   }
