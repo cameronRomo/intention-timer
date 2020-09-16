@@ -249,6 +249,22 @@ html {
   margin-bottom: 20px;
   justify-content: space-between;
 }
+.card__data-1 {
+  margin: 0;
+  margin-bottom: 1px;
+  font-weight: bolder;
+  font-size: 14px;
+  font-family: sans-serif;
+  /* margin-left: 12px; */
+}
+.card__data-2 {
+  margin: 0;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+.card__data-3 {
+  margin: 0;
+}
 
 }
 .--hidden {
