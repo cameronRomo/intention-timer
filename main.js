@@ -14,7 +14,7 @@ var pastActivityData = [
 
 // EVENT LISTENERS 👇
 //display storage on pageload
-// window.addEventListener("load", displayStoredCards);
+ // window.addEventListener("load", displayStoredCards);
 
 // Log Activity (Local storage and new card)
 document.querySelector(".activities__new-activity").addEventListener("click", function(event) {
@@ -33,6 +33,7 @@ document.querySelector(".activities__new-activity").addEventListener("click", fu
         // with insertAdjacentHTML
   }
 });
+
 // Category selection
 document.querySelector(".activities__icons-section").addEventListener("click", function(event) {
   if (event.target.id !== undefined || event.target.id !== null || event.target.id !== "") {
@@ -40,6 +41,7 @@ document.querySelector(".activities__icons-section").addEventListener("click", f
   }
   return
 });
+
 // Number input validation
 document.querySelector("#minutes-seconds-block").addEventListener("keypress", function(event) {
   var validKeys = [8, 9, 13, 18, 92, 93];  //  keys like tab, etc
@@ -52,6 +54,7 @@ document.querySelector("#minutes-seconds-block").addEventListener("keypress", fu
     event.preventDefault();
   }
 });
+
 // Prepare timer (Start activity)
 document.querySelector(".activities__start-button").addEventListener("click", function() {
   if (descriptionCheck() !== false  && checkTime() !==false  && checkCategory() !== false) {
@@ -61,6 +64,7 @@ document.querySelector(".activities__start-button").addEventListener("click", fu
     insertTimer();
   }
 });
+
 // Start timer
 document.querySelector(".activities__select-category").addEventListener('click', function(event) {
   var startBtn = event.target.className;
@@ -135,7 +139,7 @@ function checkCategory() {
   if (pastActivityData[0].category !== "") {
     return true
   } else {
-    alert("placeholder: pick category jackass")
+    alert("Please choose a category")
     return false
   }
 }
@@ -163,7 +167,7 @@ function insertTimer() {
   `
   <div class="activities__timer">
     <div class="activities__timer__description --opacity50">${pastActivityData[0].description}</div>
-    <div class="activities__timer__clock">hi you :)</div>
+    <div class="activities__timer__clock">You got this.</div>
     <svg class="activities__timer__svg activities__timer__svg--pulse activities__timer--${pastActivityData[0].category}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
       <g class="activities__timer__circle">
         <circle class="activities__timer__path-elapsed" cx="50" cy="50" r="45" />
@@ -208,7 +212,7 @@ function countDown(totalTime) {
     document.querySelector(".activities__timer__clock").textContent = minutes + ":" + seconds;
     if (timeLeft-- <= 0) {
       newActivity.markComplete();
-      document.querySelector(".activities__timer__clock").textContent = "nicely done";
+      document.querySelector(".activities__timer__clock").textContent = "Nicely done!";
     }
     setCircleDasharray((timeLeft / totalTime));
   }, 1000);
@@ -243,22 +247,29 @@ function applyCountDownStyle(beginEnd) {
 function displayStoredCards() {
   var retrievedAct = localStorage.getItem("savedActivities");
   var parsedAct = JSON.parse(retrievedAct);
-  var storedCard = pastActivityData[0];
   // TODO function to display cards
   //  PSEUDO iterate in reverse through the stored array
   //  for (i = array.length - 1; i >= 0; i--) {
   //    if (array[i].completed !== false) {
   //      insertcardsfunction(i)
   //  }
+}
 
-  for (var i = pastActivityData.length - 1; i <= 0; i--) {
-      if (pastActivityData[i].completed !== false) {
+function displayCard() {
+  for (var i = 0; i < pastActivityData.length; i++) {
+      if (pastActivityData[0].completed !== false) {
         document.querySelector(".activities__past-activity__h2").insertAdjacentHTML("afterend",
         `
-        <div class="activities__past-activity-section">
-          <h5 class="activities__past-activity-category">${storedCard.category}</h5>
-          <h5 class="activities__past-activity-time">${storedCard.minutes}</h5>
-          <h5 class="activities__past-activity-description">${storedCard.description}</h5>
+        <div class="card__wrapper">test
+          <div class="card__data">
+            <h5>${pastActivityData[i].category}</h5>
+            <h5>${pastActivityData[i].minutes}</h5>
+            <h5>${pastActivityData[i].description}</h5>
+          </div>
+          <div class="card-category-color__container">
+            <div class="card__category-color__bar"></div>
+        </div>
+        </div>
         `
         );
       }
