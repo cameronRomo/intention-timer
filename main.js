@@ -100,6 +100,12 @@ function clearOtherCategories(category) {
   }
 };
 
+function clearCategoryField() {
+  document.querySelector("#description-input").value = "";
+  document.querySelector("#minutes-input").value = "";
+  document.querySelector("#seconds-input").value = "";
+};
+
 function descriptionCheck() {
   var description = document.querySelector("#description-input");
   if (!description.value.trim().length === true) {
