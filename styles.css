@@ -231,6 +231,12 @@ html {
   margin-left: 35px;
 }
 
+/* activity cards  */
+.activities__past-activity__h2 > h5 {
+  color: #FFF;
+}
+
+
 .activities__past-activity__p {
   text-align: center;
   margin-left: 35px;
@@ -239,7 +245,6 @@ html {
   line-height: 2;
 }
 .activities__cards {
-  color: #FFF;
 }
 .--hidden {
   position: absolute !important;
@@ -345,16 +350,11 @@ html {
 }
 
 .activities__timer__path-remaining {
-  /* Just as thick as the original ring */
   stroke-width: 3px;
-  /* Rounds the line endings to create a seamless circle */
   stroke-linecap: round;
-  /* Makes sure the animation starts at the top of the circle */
   transform: rotate(90deg);
   transform-origin: center;
-  /* One second aligns with the speed of the countdown timer */
   transition: 1s linear all;
-  /* Allows the ring to change color when the color value updates */
   stroke: currentcolor;
 }
 
@@ -450,10 +450,6 @@ html {
 .--opacity50 {
   opacity: .4;
 }
-/* .activities__timer__svg:hover {
-  transition: all .6s ease-in-out;
-  background-color: salmon;
-} */
 
 .activities__select-category--apply-flex {
   display: flex;
