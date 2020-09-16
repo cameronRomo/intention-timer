@@ -1,13 +1,16 @@
 // GLOBAL VARIABLES 👇
-var dataModel = {
+
+var newActivity;
+var pastActivityData = [
+  {
   category: "",
   description: "",
   minutes: "",
   seconds: "",
   completed: false,
   id: "",
-}
-var pastActivityData = [];
+  }
+];
 // EVENT LISTENERS 👇
 document.querySelector(".activities__icons-section").addEventListener("click", function(event) {
   if (event.target.id !== undefined || event.target.id !== null || event.target.id !== "") {
@@ -30,8 +33,8 @@ document.querySelector("#minutes-seconds-block").addEventListener("keypress", fu
 document.querySelector(".activities__start-button").addEventListener("click", function() {
   // TODO  make sure all fields are filled before starting timer
   if (descriptionCheck() !== false  && checkTime() !==false  && checkCategory() !== false) {
-    console.log(checkTime());
     descriptionCheck();
+    newActivity = new Activity(pastActivityData[0]);
     hideElements();
     insertTimer();
   }
@@ -40,7 +43,7 @@ document.querySelector(".activities__start-button").addEventListener("click", fu
 document.querySelector(".activities__select-category").addEventListener('click', function(event) {
   var startBtn = event.target.className;
   console.log(startBtn);
-  if (startBtn.includes("activities__timer__start-button__text") && dataModel.completed === false) {
+  if (startBtn.includes("activities__timer__start-button__text") && pastActivityData[0].completed === false) {
     startTimer();
   }
 });
@@ -72,7 +75,7 @@ function descriptionCheck() {
   }
 }
 function checkTime() {
-  if (dataModel.minutes !== "" || dataModel.seconds !== "") {
+  if (pastActivityData[0].minutes !== "" || pastActivityData[0].seconds !== "") {
     return true
   } else {
     alert("placeholder: add times")
@@ -80,7 +83,7 @@ function checkTime() {
   }
 }
 function checkCategory() {
-  if (dataModel.category !== "") {
+  if (pastActivityData[0].category !== "") {
     return true
   } else {
     alert("placeholder: pick category jackass")
@@ -89,9 +92,9 @@ function checkCategory() {
 }
 function dataModelCollect(element) {
   if (element.title === "category") {
-    dataModel[element.title] = element.id
+    pastActivityData[0][element.title] = element.id
   } else {
-    dataModel[element.title] = element.value;
+    pastActivityData[0][element.title] = element.value;
   }
 }
 function hideElements() {
@@ -102,9 +105,9 @@ function insertTimer() {
   document.querySelector(".activities__select-category").insertAdjacentHTML('afterbegin',
   `
   <div class="activities__timer">
-    <div class="activities__timer__description">${dataModel.description}</div>
+    <div class="activities__timer__description">${pastActivityData[0].description}</div>
     <div class="activities__timer__clock">hello</div>
-    <svg class="activities__timer__svg activities__timer__svg--pulse activities__timer--${dataModel.category}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <svg class="activities__timer__svg activities__timer__svg--pulse activities__timer--${pastActivityData[0].category}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
       <g class="activities__timer__circle">
         <circle class="activities__timer__path-elapsed" cx="50" cy="50" r="45" />
         <path
@@ -113,7 +116,7 @@ function insertTimer() {
         class="
         activities__timer__path-remaining
         activities__timer__path-remaining--pulse
-        activities__timer--${dataModel.category}
+        activities__timer--${pastActivityData[0].category}
         "
         d="
           M 50, 50
@@ -138,7 +141,7 @@ function insertTimer() {
   document.querySelector(".activities__select-category").classList.add("activities__select-category--apply-flex");
 }
 function startTimer() {
-  var totalTime = Number(`${dataModel.minutes}` * 60) + Number(`${dataModel.seconds}`);
+  var totalTime = Number(`${pastActivityData[0].minutes}` * 60) + Number(`${pastActivityData[0].seconds}`);
   document.querySelector(".activities__timer__start-button__text").innerText = ""
   countDown(totalTime);
 }
@@ -159,7 +162,7 @@ function countDown(totalTime) {
 }
 
 function timerComplete() {
-  dataModel.completed = true;
+  pastActivityData[0].completed = true;
   document.querySelector(".activities__timer__start-button__text").textContent = "COMPLETE!";
   document.querySelector(".activities__timer__clock").textContent = "00:00";
   document.querySelector('.activities__timer__log-button').classList.remove("--hidden");
