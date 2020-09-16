@@ -231,12 +231,6 @@ html {
   margin-left: 35px;
 }
 
-/* activity cards  */
-.activities__past-activity__h2 > h5 {
-  color: #FFF;
-}
-
-
 .activities__past-activity__p {
   text-align: center;
   margin-left: 35px;
@@ -244,7 +238,18 @@ html {
   padding-top: 30px;
   line-height: 2;
 }
-.activities__cards {
+.card__wrapper{
+  background-color: #45424D;
+  box-shadow: 6px 6px 5px 5px #26222D;
+  width: 90%;
+  display: flex;
+  height: 90px;
+  margin-left: 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+
 }
 .--hidden {
   position: absolute !important;
