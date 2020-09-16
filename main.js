@@ -17,6 +17,13 @@ var pastActivityData = [
 document.querySelector(".activities__new-activity").addEventListener("click", function(event) {
   if (event.target.className === "activities__timer__log-button") {
     newActivity.saveToStorage();
+    // TODO display cards
+    // create a div section for cards
+    // new function (arguments for [index])
+    // hide placeholder text
+      // insertAdjacentHTML at div section
+        // interpolate ${pastActivityData[index].category} (for log button always [-1])
+        // with insertAdjacentHTML
   }
 });
 // Category selection
@@ -194,4 +201,16 @@ function applyCountDownStyle(beginEnd) {
     svgClass.remove("activities__timer__svg--active");
     svgClass.remove("activities__timer__svg--animate");
   }
+}
+
+// window on load function
+function displayStoredCards() {
+  var retrivedAct = localStorage.getItem('savedActivities');
+  var parsedAct = JSON.parse(retrivedAct);
+  // TODO function to display cards
+  //  PSEUDO iterate in reverse through the stored array
+  //  for (i = array.length - 1; i >= 0; i--) {
+  //    if (array[i].completed !== false) {
+  //      insertcardsfunction(i)
+  //  }
 }

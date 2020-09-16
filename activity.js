@@ -28,7 +28,6 @@ class Activity {
     pastActivityData.push(newActivity);
     var stringifiedActivity = JSON.stringify(pastActivityData);
     localStorage.setItem('savedActivities', stringifiedActivity);
-      // return to main form
-    // }
+      // TODO return to main form  - opposite of hideElements
   }
 };
