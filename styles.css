@@ -265,7 +265,27 @@ html {
 .card__data-3 {
   margin: 0;
 }
-
+.card__category-color__container {
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+  width: 50px;
+  margin-top: 12px;
+  margin-right: 12px;
+}
+.card__category-color__bar {
+  height: 38px;
+  width: 8px;
+  border-radius: 5px;
+}
+.card__category-color__bar--study {
+  background-color: #B3FD78;
+}
+.card__category-color__bar--meditate {
+  background-color: #C278FD;
+}
+.card__category-color__bar--exercise {
+  background-color: #FD8078;
 }
 .--hidden {
   position: absolute !important;
