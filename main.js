@@ -21,6 +21,7 @@ document.querySelector(".activities__new-activity").addEventListener("click", fu
   if (event.target.className === "activities__timer__log-button") {
 
     newActivity.saveToStorage();
+
     // TODO display cards
 
     // create a div section for cards
@@ -100,7 +101,9 @@ function clearOtherCategories(category) {
   }
 };
 
-function clearCategoryField() {
+function clearInputs() {
+  this.completed = false;
+  document.querySelector("#category").value = ""
   document.querySelector("#description-input").value = "";
   document.querySelector("#minutes-input").value = "";
   document.querySelector("#seconds-input").value = "";
