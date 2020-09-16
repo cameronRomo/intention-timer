@@ -243,7 +243,27 @@ function applyCountDownStyle(beginEnd) {
   }
 }
 
-// window on load function
+function displayCard() {
+  for (var i = 0; i < pastActivityData.length; i++) {
+      if (pastActivityData[0].completed !== false) {
+        document.querySelector(".activities__past-activity__h2").insertAdjacentHTML("afterend",
+        `
+        <div class="card__wrapper">
+          <div class="card__data">
+            <h5 class="card__data-1">${pastActivityData[i].category}</h5>
+            <h5 class="card__data-2">${pastActivityData[i].minutes}</h5>
+            <h5 class="card__data-3">${pastActivityData[i].description}</h5>
+          </div>
+          <div class="card-category-color__container">
+            <div class="card__category-color__bar card__categorty-color__bar--${pastActivityData[i].category}"></div>
+          </div>
+        </div>
+        `
+      )
+    }
+  }
+}
+
 function displayStoredCards() {
   var retrievedAct = localStorage.getItem("savedActivities");
   var parsedAct = JSON.parse(retrievedAct);
@@ -253,25 +273,4 @@ function displayStoredCards() {
   //    if (array[i].completed !== false) {
   //      insertcardsfunction(i)
   //  }
-}
-
-function displayCard() {
-  for (var i = 0; i < pastActivityData.length; i++) {
-      if (pastActivityData[0].completed !== false) {
-        document.querySelector(".activities__past-activity__h2").insertAdjacentHTML("afterend",
-        `
-        <div class="card__wrapper">test
-          <div class="card__data">
-            <h5>${pastActivityData[i].category}</h5>
-            <h5>${pastActivityData[i].minutes}</h5>
-            <h5>${pastActivityData[i].description}</h5>
-          </div>
-          <div class="card-category-color__container">
-            <div class="card__category-color__bar"></div>
-        </div>
-        </div>
-        `
-        );
-      }
-  }
 }
