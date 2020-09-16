@@ -21,7 +21,8 @@ document.querySelector(".activities__new-activity").addEventListener("click", fu
   if (event.target.className === "activities__timer__log-button") {
 
     newActivity.saveToStorage();
-
+    clearInputs();
+    showForm();
     // TODO display cards
 
     // create a div section for cards
@@ -101,9 +102,9 @@ function clearOtherCategories(category) {
   }
 };
 
-function clearInputs() {
+function clearInputs(category) {
   this.completed = false;
-  document.querySelector("#category").value = ""
+  document.querySelectorAll(".category").classList.remove("-icon--active");
   document.querySelector("#description-input").value = "";
   document.querySelector("#minutes-input").value = "";
   document.querySelector("#seconds-input").value = "";
@@ -162,7 +163,7 @@ function insertTimer() {
   `
   <div class="activities__timer">
     <div class="activities__timer__description --opacity50">${pastActivityData[0].description}</div>
-    <div class="activities__timer__clock">hello</div>
+    <div class="activities__timer__clock">hi you :)</div>
     <svg class="activities__timer__svg activities__timer__svg--pulse activities__timer--${pastActivityData[0].category}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
       <g class="activities__timer__circle">
         <circle class="activities__timer__path-elapsed" cx="50" cy="50" r="45" />
@@ -207,6 +208,7 @@ function countDown(totalTime) {
     document.querySelector(".activities__timer__clock").textContent = minutes + ":" + seconds;
     if (timeLeft-- <= 0) {
       newActivity.markComplete();
+      document.querySelector(".activities__timer__clock".).textContent = "nicely done";
     }
     setCircleDasharray((timeLeft / totalTime));
   }, 1000);
