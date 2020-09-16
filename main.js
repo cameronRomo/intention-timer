@@ -59,10 +59,24 @@ document.querySelector(".activities__select-category").addEventListener('click',
   var startBtn = event.target.className;
   if (startBtn.includes("activities__timer__start-button__text") && newActivity.completed === false) {
     newActivity.beginTimer();
+    playSound("meditate");
   }
 });
 
 // EVENT HANDLERS 👇
+
+function playSound(category) {
+  gong = new Audio("./assets/gong.mp3");
+  thunder = new Audio("./assets/thunder.mp3");
+  gong.pause();
+  thunder.pause();
+  if (category === "meditate") {
+    gong.play();
+    gong.volume = .75;
+    thunder.play();
+    thunder.volume = .85;
+  }
+}
 
 function selectCategory(category) {
   document.querySelector(`#${category.id}`).classList.add(`${category.id}-icon--active`);
