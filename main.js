@@ -13,11 +13,16 @@ var pastActivityData = [
 ];
 
 // EVENT LISTENERS 👇
+//display storage on pageload
+// window.addEventListener("load", displayStoredCards);
+
 // Log Activity (Local storage and new card)
 document.querySelector(".activities__new-activity").addEventListener("click", function(event) {
   if (event.target.className === "activities__timer__log-button") {
+
     newActivity.saveToStorage();
     // TODO display cards
+
     // create a div section for cards
     // new function (arguments for [index])
     // hide placeholder text
@@ -50,7 +55,7 @@ document.querySelector(".activities__start-button").addEventListener("click", fu
   if (descriptionCheck() !== false  && checkTime() !==false  && checkCategory() !== false) {
     descriptionCheck();
     newActivity = new Activity(pastActivityData[0]);
-    hideElements();
+    hideForm();
     insertTimer();
   }
 });
@@ -134,9 +139,13 @@ function dataModelCollect(element) {
   }
 }
 
-function hideElements() {
+function hideForm() {
   document.querySelector(".activities__new-activity__h2").innerText = "Current Activity";
   document.querySelector(".activities__form").classList.add("--hidden");
+}
+
+function showForm() {
+  document.querySelector(".activities__form").classList.remove("--hidden");
 }
 
 function insertTimer() {
@@ -221,12 +230,26 @@ function applyCountDownStyle(beginEnd) {
 
 // window on load function
 function displayStoredCards() {
-  var retrivedAct = localStorage.getItem('savedActivities');
-  var parsedAct = JSON.parse(retrivedAct);
+  var retrievedAct = localStorage.getItem("savedActivities");
+  var parsedAct = JSON.parse(retrievedAct);
+  var storedCard = pastActivityData[0];
   // TODO function to display cards
   //  PSEUDO iterate in reverse through the stored array
   //  for (i = array.length - 1; i >= 0; i--) {
   //    if (array[i].completed !== false) {
   //      insertcardsfunction(i)
   //  }
+
+  // for (var i = pastActivityData.length - 1; i <= 0; i--) {
+  //     if (pastActivityData[i].completed !== false) {
+  //       document.querySelector(".activities__past-activity__h2").insertAdjacentHTML("afterend",
+  //       `
+  //       <div class="activities__past-activity-section">
+  //         <h5 class="activities__past-activity-category">${storedCard.category}</h5>
+  //         <h5 class="activities__past-activity-time">${storedCard.minutes}</h5>
+  //         <h5 class="activities__past-activity-description">${storedCard.description}</h5>
+  //       `
+  //       );
+  //     }
+  // }
 }
