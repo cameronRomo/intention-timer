@@ -21,8 +21,8 @@ document.querySelector(".activities__new-activity").addEventListener("click", fu
   if (event.target.className === "activities__timer__log-button") {
 
     newActivity.saveToStorage();
-    clearInputs();
     showForm();
+    clearInputs();
     // TODO display cards
 
     // create a div section for cards
@@ -102,9 +102,8 @@ function clearOtherCategories(category) {
   }
 };
 
-function clearInputs(category) {
-  this.completed = false;
-  document.querySelectorAll(".category").classList.remove("-icon--active");
+function clearInputs() {
+  document.querySelector(`#${pastActivityData[0].category}`).classList.remove(`${pastActivityData[0].category}-icon--active`);
   document.querySelector("#description-input").value = "";
   document.querySelector("#minutes-input").value = "";
   document.querySelector("#seconds-input").value = "";
@@ -156,6 +155,7 @@ function hideForm() {
 
 function showForm() {
   document.querySelector(".activities__form").classList.remove("--hidden");
+  document.querySelector(".activities__timer").classList.add("--hidden");
 }
 
 function insertTimer() {
@@ -208,7 +208,7 @@ function countDown(totalTime) {
     document.querySelector(".activities__timer__clock").textContent = minutes + ":" + seconds;
     if (timeLeft-- <= 0) {
       newActivity.markComplete();
-      document.querySelector(".activities__timer__clock".).textContent = "nicely done";
+      document.querySelector(".activities__timer__clock").textContent = "nicely done";
     }
     setCircleDasharray((timeLeft / totalTime));
   }, 1000);
@@ -251,16 +251,16 @@ function displayStoredCards() {
   //      insertcardsfunction(i)
   //  }
 
-  // for (var i = pastActivityData.length - 1; i <= 0; i--) {
-  //     if (pastActivityData[i].completed !== false) {
-  //       document.querySelector(".activities__past-activity__h2").insertAdjacentHTML("afterend",
-  //       `
-  //       <div class="activities__past-activity-section">
-  //         <h5 class="activities__past-activity-category">${storedCard.category}</h5>
-  //         <h5 class="activities__past-activity-time">${storedCard.minutes}</h5>
-  //         <h5 class="activities__past-activity-description">${storedCard.description}</h5>
-  //       `
-  //       );
-  //     }
-  // }
+  for (var i = pastActivityData.length - 1; i <= 0; i--) {
+      if (pastActivityData[i].completed !== false) {
+        document.querySelector(".activities__past-activity__h2").insertAdjacentHTML("afterend",
+        `
+        <div class="activities__past-activity-section">
+          <h5 class="activities__past-activity-category">${storedCard.category}</h5>
+          <h5 class="activities__past-activity-time">${storedCard.minutes}</h5>
+          <h5 class="activities__past-activity-description">${storedCard.description}</h5>
+        `
+        );
+      }
+  }
 }
