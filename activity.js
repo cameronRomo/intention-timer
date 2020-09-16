@@ -9,7 +9,9 @@ class Activity {
   }
 
   beginTimer() {
-
+    var totalTime = Number(`${pastActivityData[0].minutes}` * 60) + Number(`${pastActivityData[0].seconds}`);
+    document.querySelector(".activities__timer__start-button__text").innerText = ""
+    countDown(totalTime);
   }
 
   markComplete() {

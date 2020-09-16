@@ -44,7 +44,7 @@ document.querySelector(".activities__select-category").addEventListener('click',
   var startBtn = event.target.className;
   console.log(startBtn);
   if (startBtn.includes("activities__timer__start-button__text") && pastActivityData[0].completed === false) {
-    startTimer();
+    newActivity.beginTimer();
   }
 });
 // EVENT HANDLERS 👇
@@ -140,11 +140,7 @@ function insertTimer() {
   );
   document.querySelector(".activities__select-category").classList.add("activities__select-category--apply-flex");
 }
-function startTimer() {
-  var totalTime = Number(`${pastActivityData[0].minutes}` * 60) + Number(`${pastActivityData[0].seconds}`);
-  document.querySelector(".activities__timer__start-button__text").innerText = ""
-  countDown(totalTime);
-}
+
 function countDown(totalTime) {
   applyCountDownStyle("begin");
   var timeLeft = totalTime;
