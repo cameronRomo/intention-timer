@@ -13,14 +13,20 @@ var pastActivityData = [
 ];
 
 // EVENT LISTENERS 👇
-
+// Log Activity (Local storage and new card)
+document.querySelector(".activities__new-activity").addEventListener("click", function(event) {
+  if (event.target.className === "activities__timer__log-button") {
+    newActivity.saveToStorage();
+  }
+});
+// Category selection
 document.querySelector(".activities__icons-section").addEventListener("click", function(event) {
   if (event.target.id !== undefined || event.target.id !== null || event.target.id !== "") {
     selectCategory(event.target);
   }
   return
 });
-
+// Number input validation
 document.querySelector("#minutes-seconds-block").addEventListener("keypress", function(event) {
   var validKeys = [8, 9, 13, 18, 92, 93];  //  keys like tab, etc
   if (event.keyCode >= 48 && event.keyCode <= 57 || validKeys.includes(event.keyCode) === true) {   // TODO future note in readme that this iterates 2x with each additional number
@@ -32,9 +38,8 @@ document.querySelector("#minutes-seconds-block").addEventListener("keypress", fu
     event.preventDefault();
   }
 });
-
+// Prepare timer (Start activity)
 document.querySelector(".activities__start-button").addEventListener("click", function() {
-  // TODO  make sure all fields are filled before starting timer
   if (descriptionCheck() !== false  && checkTime() !==false  && checkCategory() !== false) {
     descriptionCheck();
     newActivity = new Activity(pastActivityData[0]);
@@ -42,10 +47,9 @@ document.querySelector(".activities__start-button").addEventListener("click", fu
     insertTimer();
   }
 });
-
+// Start timer
 document.querySelector(".activities__select-category").addEventListener('click', function(event) {
   var startBtn = event.target.className;
-  console.log(startBtn);
   if (startBtn.includes("activities__timer__start-button__text") && newActivity.completed === false) {
     newActivity.beginTimer();
   }
@@ -59,7 +63,6 @@ function selectCategory(category) {
   clearOtherCategories(category);
 };
 
-// target icon block with ${catagory.id}
 function clearOtherCategories(category) {
   var allCategories = document.querySelectorAll(".activities__figure");
   for (var i = 0; i < allCategories.length; i++) {
@@ -86,7 +89,7 @@ function checkTime() {
   if (pastActivityData[0].minutes !== "" || pastActivityData[0].seconds !== "") {
     return true
   } else {
-    alert("placeholder: add times")
+    alert("Please add minutes or seconds")
     return false
   }
 }

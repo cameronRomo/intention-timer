@@ -25,6 +25,10 @@ class Activity {
   }
 
   saveToStorage() {
-    
+    pastActivityData.push(newActivity);
+    var stringifiedActivity = JSON.stringify(pastActivityData);
+    localStorage.setItem('savedActivities', stringifiedActivity);
+      // return to main form
+    // }
   }
 };
