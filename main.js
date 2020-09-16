@@ -60,6 +60,7 @@ document.querySelector(".activities__select-category").addEventListener('click',
   if (startBtn.includes("activities__timer__start-button__text") && newActivity.completed === false) {
     newActivity.beginTimer();
     playSound("meditate");
+    document.querySelector('.activities__timer__description').classList.remove('--opacity50');
   }
 });
 
@@ -71,10 +72,11 @@ function playSound(category) {
   gong.pause();
   thunder.pause();
   if (category === "meditate") {
+    gong.volume = .05;
+    thunder.volume = .075;
     gong.play();
-    gong.volume = .75;
     thunder.play();
-    thunder.volume = .85;
+    thunder.loop = true;
   }
 }
 
@@ -141,7 +143,7 @@ function insertTimer() {
   document.querySelector(".activities__select-category").insertAdjacentHTML('afterbegin',
   `
   <div class="activities__timer">
-    <div class="activities__timer__description">${pastActivityData[0].description}</div>
+    <div class="activities__timer__description --opacity50">${pastActivityData[0].description}</div>
     <div class="activities__timer__clock">hello</div>
     <svg class="activities__timer__svg activities__timer__svg--pulse activities__timer--${pastActivityData[0].category}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
       <g class="activities__timer__circle">
