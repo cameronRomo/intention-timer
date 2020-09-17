@@ -1,5 +1,7 @@
-// GLOBAL VARIABLES 👇
+// On page load
+document.onload = displayStoredCards();
 
+// GLOBAL VARIABLES 👇
 var newActivity;
 var pastActivityData = [
   {
@@ -13,25 +15,15 @@ var pastActivityData = [
 ];
 
 // EVENT LISTENERS 👇
-//display storage on pageload
- // window.addEventListener("load", displayStoredCards);
 
 // Log Activity (Local storage and new card)
 document.querySelector(".activities__new-activity").addEventListener("click", function(event) {
   if (event.target.className === "activities__timer__log-button") {
-
     newActivity.saveToStorage();
+    // newActivity.completed = false;
     showForm();
     clearInputs();
     displayCard();
-    // TODO display cards
-
-    // create a div section for cards
-    // new function (arguments for [index])
-    // hide placeholder text
-      // insertAdjacentHTML at div section
-        // interpolate ${pastActivityData[index].category} (for log button always [-1])
-        // with insertAdjacentHTML
   }
 });
 
@@ -57,10 +49,11 @@ document.querySelector("#minutes-seconds-block").addEventListener("keypress", fu
 });
 
 // Prepare timer (Start activity)
-document.querySelector(".activities__start-button").addEventListener("click", function() {
+document.querySelector(".activities__start-button").addEventListener("click", function(event) {
   if (descriptionCheck() !== false  && checkTime() !==false  && checkCategory() !== false) {
     descriptionCheck();
     newActivity = new Activity(pastActivityData[0]);
+    newActivity.completed = false;
     hideForm();
     insertTimer();
   }
@@ -69,10 +62,12 @@ document.querySelector(".activities__start-button").addEventListener("click", fu
 // Start timer
 document.querySelector(".activities__select-category").addEventListener('click', function(event) {
   var startBtn = event.target.className;
-  if (startBtn.includes("activities__timer__start-button__text") && newActivity.completed === false) {
+  if (startBtn.includes("activities__timer__start-button__text") && pastActivityData[0].completed === false) {
     newActivity.beginTimer();
     playSound("meditate");
     document.querySelector('.activities__timer__description').classList.remove('--opacity50');
+  } else {
+    event.preventDefault
   }
 });
 
@@ -112,6 +107,8 @@ function clearInputs() {
   document.querySelector("#description-input").value = "";
   document.querySelector("#minutes-input").value = "";
   document.querySelector("#seconds-input").value = "";
+  pastActivityData[0].minutes = ""; // ugly bug fix
+  pastActivityData[0].seconds = ""; // ugly bug fix
 };
 
 function descriptionCheck() {
@@ -219,6 +216,38 @@ function countDown(totalTime) {
   }, 1000);
 }
 
+function displayCard() {
+  document.querySelector(".activities__past-activity__h2").insertAdjacentHTML('afterend',
+    `
+    <div class="card__wrapper">
+      <div class="card__data">
+        <h5 class="card__data-1">${pastActivityData[pastActivityData.length-1].category}</h5>
+        <h5 class="card__data-2">${pastActivityData[pastActivityData.length-1].minutes} MIN</h5>
+        <h5 class="card__data-3">${pastActivityData[pastActivityData.length-1].description}</h5>
+      </div>
+      <div class="card__category-color__container">
+        <div class="card__category-color__bar card__category-color__bar--${pastActivityData[pastActivityData.length-1].category}"></div>
+      </div>
+    </div>
+    `
+  )
+}
+
+function displayStoredCards() {
+  var retrievedAct = localStorage.getItem("savedActivities");
+  if (retrievedAct !== null) {
+    var parsedAct = JSON.parse(retrievedAct);
+    if (parsedAct !== [] || parsedAct !== null) {
+      pastActivityData = parsedAct;
+      for (var i = 0; i < pastActivityData.length; i++) {
+        if (pastActivityData[i].completed !== false) {
+          displayCard();
+        }
+      }
+    }
+  }
+}
+
 // styling functions
 
 function setCircleDasharray(timeFraction) {
@@ -241,37 +270,5 @@ function applyCountDownStyle(beginEnd) {
     svgClass.add("activities__timer__svg--pulse-complete");
     svgClass.remove("activities__timer__svg--active");
     svgClass.remove("activities__timer__svg--animate");
-  }
-}
-
-function displayCard() {
-  document.querySelector(".activities__past-activity__h2").insertAdjacentHTML('afterend',
-    `
-    <div class="card__wrapper">
-      <div class="card__data">
-        <h5 class="card__data-1">${pastActivityData[pastActivityData.length-1].category}</h5>
-        <h5 class="card__data-2">${pastActivityData[pastActivityData.length-1].minutes} MIN</h5>
-        <h5 class="card__data-3">${pastActivityData[pastActivityData.length-1].description}</h5>
-      </div>
-      <div class="card__category-color__container">
-        <div class="card__category-color__bar card__category-color__bar--${pastActivityData[pastActivityData.length-1].category}"></div>
-      </div>
-    </div>
-    `
-  )
-}
-
-document.onload = displayStoredCards();
-
-function displayStoredCards() {
-  var retrievedAct = localStorage.getItem("savedActivities");
-  var parsedAct = JSON.parse(retrievedAct);
-  if (parsedAct !== [] || parsedAct !== undefined) {
-    pastActivityData = parsedAct;
-  }
-  for (var i = 0; i < pastActivityData.length; i++) {
-    if (pastActivityData[i].completed !== false) {
-      displayCard();
-    }
   }
 }
