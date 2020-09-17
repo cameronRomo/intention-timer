@@ -23,6 +23,7 @@ document.querySelector(".activities__new-activity").addEventListener("click", fu
     newActivity.saveToStorage();
     showForm();
     clearInputs();
+    displayCard();
     // TODO display cards
 
     // create a div section for cards
@@ -244,33 +245,33 @@ function applyCountDownStyle(beginEnd) {
 }
 
 function displayCard() {
-  for (var i = 0; i < pastActivityData.length; i++) {
-      if (pastActivityData[0].completed !== false) {
-        document.querySelector(".activities__past-activity__h2").insertAdjacentHTML("afterend",
-        `
-        <div class="card__wrapper">
-          <div class="card__data">
-            <h5 class="card__data-1">${pastActivityData[i].category}</h5>
-            <h5 class="card__data-2">${pastActivityData[i].minutes}</h5>
-            <h5 class="card__data-3">${pastActivityData[i].description}</h5>
-          </div>
-          <div class="card-category-color__container">
-            <div class="card__category-color__bar card__categorty-color__bar--${pastActivityData[i].category}"></div>
-          </div>
-        </div>
-        `
-      )
-    }
-  }
+  document.querySelector(".activities__past-activity__h2").insertAdjacentHTML('afterend',
+    `
+    <div class="card__wrapper">
+      <div class="card__data">
+        <h5 class="card__data-1">${pastActivityData[pastActivityData.length-1].category}</h5>
+        <h5 class="card__data-2">${pastActivityData[pastActivityData.length-1].minutes} MIN</h5>
+        <h5 class="card__data-3">${pastActivityData[pastActivityData.length-1].description}</h5>
+      </div>
+      <div class="card__category-color__container">
+        <div class="card__category-color__bar card__category-color__bar--${pastActivityData[pastActivityData.length-1].category}"></div>
+      </div>
+    </div>
+    `
+  )
 }
+
+document.onload = displayStoredCards();
 
 function displayStoredCards() {
   var retrievedAct = localStorage.getItem("savedActivities");
   var parsedAct = JSON.parse(retrievedAct);
-  // TODO function to display cards
-  //  PSEUDO iterate in reverse through the stored array
-  //  for (i = array.length - 1; i >= 0; i--) {
-  //    if (array[i].completed !== false) {
-  //      insertcardsfunction(i)
-  //  }
+  if (parsedAct !== [] || parsedAct !== undefined) {
+    pastActivityData = parsedAct;
+  }
+  for (var i = 0; i < pastActivityData.length; i++) {
+    if (pastActivityData[i].completed !== false) {
+      displayCard();
+    }
+  }
 }
